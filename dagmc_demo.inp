@@ -1,0 +1,7 @@
+this is jons demo dag-mcnp6 file
+c
+sdef x=600 0 0 erg=14.1
+print
+nps 1e6
+cut:n j 1 j 1e-11
+
