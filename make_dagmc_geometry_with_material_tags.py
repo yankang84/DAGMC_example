@@ -76,16 +76,7 @@ wedge_surface_info_dict = load_wedge()
 with open('model_description.json') as f:
     geometry_details = byteify(json.load(f))
 
-# geometry_details=[]
-# geometry_details.append({"filename":"CAD_segmented_by_material/blankets.stp","material":"eurofer","color":"red"})
-# geometry_details.append({"filename":"CAD_segmented_by_material/central_sol.stp","material":"eurofer","color":"blue"}) #change to .sat files
-# geometry_details.append({"filename":"CAD_segmented_by_material/divertor.stp","material":"tungsten","color":"red"})
-# geometry_details.append({"filename":"CAD_segmented_by_material/magnets.stp","material":"tungsten","color":"grey"})
-# geometry_details.append({"filename":"CAD_segmented_by_material/plasma.stp","material":"tungsten","color":"hotpink"})
-# geometry_details.append({"filename":"CAD_segmented_by_material/port_plugs.stp","material":"tungsten","color":"tan"})
-# geometry_details.append({"filename":"CAD_segmented_by_material/vaccuum_vessel.stp","material":"tungsten","color":"palegreen"})
 
-#Available Colors https://www.csimsoft.com/help/appendix/available_colors.htm
 
 cubit.cmd('volume 3 visibility off')
 cubit.cmd('volume 4 visibility off')
@@ -99,6 +90,7 @@ for entry in geometry_details:
    print(entry)
    if "color" in entry.keys():
     print('color in keys')
+    # Available Colors https://www.csimsoft.com/help/appendix/available_colors.htm
     cubit.cmd('Color volume '+' '.join(entry['volumes'])+ ' '+ entry['color'])
 
 
@@ -122,3 +114,6 @@ cubit.cmd('set attribute on')
 #cubit.cmd('export dagmc "geometry_and_materials.h5m" faceting_tolerance 1.0e-4')
 cubit.cmd('export dagmc "geometry_with_material_tags.h5m"')
 os.system('rm *.jou')
+
+
+# additional steps needed for unstructured mesh https://svalinn.github.io/DAGMC/usersguide/tally.html
