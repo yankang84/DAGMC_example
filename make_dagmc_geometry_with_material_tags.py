@@ -1,7 +1,22 @@
 #!/usr/env/python3
 import os
+import json
 
 cubit.cmd('reset')
+
+def find_number_of_volumes_in_each_step_file(input_locations):
+    body_ids=''
+    volumes_in_each_step_file=[]
+    for entry in input_locations:
+      current_vols =cubit.parse_cubit_list("volume", "all")
+      print(entry['filename'])
+      cubit.cmd('import step "' + entry['filename'] + '" separate_bodies no_surfaces no_curves no_vertices heal group "'+str(entry['filename'])+'"')
+      all_vols =cubit.parse_cubit_list("volume", "all")
+      new_vols = set(current_vols).symmetric_difference(set(all_vols))
+      new_vols = map(str, new_vols)
+      print(new_vols)
+      entry['volumes']=new_vols
+    return input_locations
 
 def create_graveyard():
   cubit.cmd('brick x 110')
@@ -9,10 +24,10 @@ def create_graveyard():
   cubit.cmd('subtract volume 1 from volume 2')
   cubit.cmd('group "mat:Graveyard" add volume 3')
 
-def create_wedge():
-  os.system('python make_solid_for_reflecting_surfaces.py')
+def load_wedge():
+  #os.system('python make_solid_for_reflecting_surfaces.py')
   # input_location_wedge = "/home/jshim/Desktop/cylinder_slice_start_0_end_22.5_angle_22.5.stp"
-  input_location_wedge = "cylinder_slice_start_22.5_end_0_angle_337.5.stp"
+  input_location_wedge = "wedge.stp"
   cubit.cmd('import step "' + input_location_wedge + '" heal')
   surfaces_in_volume = cubit.parse_cubit_list("surface", " in volume 4")
   print(surfaces_in_volume)
@@ -30,6 +45,17 @@ def create_wedge():
   cubit.cmd('group "mat:Vacuum" add volume 4')
   return surface_info_dict
 
+def byteify(input):
+    if isinstance(input, dict):
+        return {byteify(key): byteify(value)
+                for key, value in input.iteritems()}
+    elif isinstance(input, list):
+        return [byteify(element) for element in input]
+    elif isinstance(input, unicode):
+        return input.encode('utf-8')
+    else:
+        return input
+
 def find_reflecting_surfaces(surface_info_dict):
     surfaces_in_wedge_volume = cubit.parse_cubit_list("surface", " in volume 4")
     for surface_id in surface_info_dict.keys():
@@ -44,23 +70,38 @@ def find_reflecting_surfaces(surface_info_dict):
 
 # os.system('python3 make_materials.py')
 create_graveyard()
-wedge_surface_info_dict = create_wedge()
+wedge_surface_info_dict = load_wedge()
 
 
+with open('model_description.json') as f:
+    geometry_details = byteify(json.load(f))
 
+# geometry_details=[]
+# geometry_details.append({"filename":"CAD_segmented_by_material/blankets.stp","material":"eurofer","color":"red"})
+# geometry_details.append({"filename":"CAD_segmented_by_material/central_sol.stp","material":"eurofer","color":"blue"}) #change to .sat files
+# geometry_details.append({"filename":"CAD_segmented_by_material/divertor.stp","material":"tungsten","color":"red"})
+# geometry_details.append({"filename":"CAD_segmented_by_material/magnets.stp","material":"tungsten","color":"grey"})
+# geometry_details.append({"filename":"CAD_segmented_by_material/plasma.stp","material":"tungsten","color":"hotpink"})
+# geometry_details.append({"filename":"CAD_segmented_by_material/port_plugs.stp","material":"tungsten","color":"tan"})
+# geometry_details.append({"filename":"CAD_segmented_by_material/vaccuum_vessel.stp","material":"tungsten","color":"palegreen"})
 
-geometry_details=[]
-geometry_details.append({"filename":"CAD_segmented_by_material/blanket_blanket.stp","material":"eurofer"})
-geometry_details.append({"filename":"CAD_segmented_by_material/central_sol.stp","material":"eurofer"}) #change to .sat files
-geometry_details.append({"filename":"CAD_segmented_by_material/divertor.stp","material":"tungsten"})
-geometry_details.append({"filename":"CAD_segmented_by_material/magnets.stp","material":"tungsten"})
-geometry_details.append({"filename":"CAD_segmented_by_material/plasma.stp","material":"tungsten"})
-geometry_details.append({"filename":"CAD_segmented_by_material/port_plugs.stp","material":"tungsten"})
-geometry_details.append({"filename":"CAD_segmented_by_material/vaccuum_vessel.stp","material":"tungsten"})
+#Available Colors https://www.csimsoft.com/help/appendix/available_colors.htm
+
+cubit.cmd('volume 3 visibility off')
+cubit.cmd('volume 4 visibility off')
+
+geometry_details = find_number_of_volumes_in_each_step_file(geometry_details)
+
+print('geometry_details',geometry_details)
 
 for entry in geometry_details:
-  cubit.cmd('import step "' + entry['filename'] + '" separate_bodies heal group "mat:'+entry['material']+'"') #step
- # cubit.cmd('import step "' + entry['filename'] + '" group "mat:'+entry['material']+'"') #.sat files
+   cubit.cmd('group "mat:'+entry['material']+'" add volume ' +' '.join(entry['volumes']))
+   print(entry)
+   if "color" in entry.keys():
+    print('color in keys')
+    cubit.cmd('Color volume '+' '.join(entry['volumes'])+ ' '+ entry['color'])
+
+
 
 cubit.cmd('vol all scale 100')
 cubit.cmd('imprint body all')
@@ -74,9 +115,10 @@ print('wedge_surface_info_dict',wedge_surface_info_dict)
 for surface_id in updated_wedge_surface_info_dict.keys():
   if updated_wedge_surface_info_dict[surface_id]['reflector'] == True:
     cubit.cmd('group "boundary:Reflecting" add surf ' +str(surface_id))
+    cubit.cmd('surface ' +str(surface_id)+' visibility on')
 
 
-#cubit.cmd('export dagmc "geometry_and_materials.h5m" faceting_tolerance 1.0e-4')
 cubit.cmd('set attribute on')
-#cubit.cmd('export dagmc "geometry_with_material_tags.h5m"')
+#cubit.cmd('export dagmc "geometry_and_materials.h5m" faceting_tolerance 1.0e-4')
+cubit.cmd('export dagmc "geometry_with_material_tags.h5m"')
 os.system('rm *.jou')

@@ -21,6 +21,10 @@ An example DAGMC simulation with automatic installation scripts for DAGMC, Pyne,
 
 ### Geometry
 
+  A freecad script is available for creating the wedge which is used for reflecting surfaces. Note that this instruction assumes freecad is installed with Python2.
+
+  ```python2 make_solid_for_reflecting_surfaces```
+
   The ```make_dagmc_geometry_with_material_tags``` script will load STEP files, tag volumes then with material names, build a graveyard volume and identify reflecting surfaces. The script must be run with trelis and can be run using the following command.
 
   ```trelis make_dagmc_geometry_with_material_tags.py```

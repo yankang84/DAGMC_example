@@ -1,0 +1,38 @@
+[
+    {
+    "filename":"CAD_segmented_by_material/blankets.stp",
+     "material":"eurofer",
+     "color":"red"
+     },
+
+    {
+    "filename":"CAD_segmented_by_material/central_sol.stp",
+     "material":"eurofer",
+     "color":"blue"
+     },
+    {
+    "filename":"CAD_segmented_by_material/divertor.stp",
+     "material":"tungsten",
+     "color":"red"
+     },
+    {
+    "filename":"CAD_segmented_by_material/magnets.stp",
+     "material":"tungsten",
+     "color":"grey"
+     },
+    {
+    "filename":"CAD_segmented_by_material/plasma.stp",
+     "material":"tungsten",
+     "color":"hotpink"
+     },
+    {
+    "filename":"CAD_segmented_by_material/port_plugs.stp",
+     "material":"tungsten",
+     "color":"tan"
+     },
+    {
+    "filename":"CAD_segmented_by_material/vaccuum_vessel.stp",
+     "material":"tungsten",
+     "color":"palegreen"
+     }
+]
