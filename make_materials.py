@@ -31,6 +31,31 @@ myxsdir = Xsdir('/home/jshim/xdata/xsdir')
 
 
 
+eurofer_2016 = Material({'Fe' : 0.88821,
+                    'B' : 1e-05,
+                    'C' : 0.00105,
+                    'N' : 0.0004,
+                    'O' : 1e-05,
+                    'Al' : 4e-05,
+                    'Si' : 0.00026,
+                    'P' : 2e-05,
+                    'S' : 3e-05,
+                    'Ti' : 1e-05,
+                    'V' : 0.002,
+                    'Cr' : 0.09,
+                    'Mn' : 0.0055,
+                    'Co' : 5e-05,
+                    'Ni' : 0.0001,
+                    'Cu' : 3e-05,
+                    'Nb' : 5e-05,
+                    'Mo' : 3e-05,
+                    'Ta' : 0.0012,
+                    'W' : 0.011,
+                    })
+eurofer_2016.density = 7.87 
+eurofer_2016 = eurofer.expand_elements()
+
+#this needs changing to be the 2017 version
 eurofer = Material({'Fe' : 0.88821,
                     'B' : 1e-05,
                     'C' : 0.00105,

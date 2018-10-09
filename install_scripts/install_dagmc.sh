@@ -120,4 +120,20 @@ make -j
 
 make install
 
+cd $HOME
+
+mkdir visit
+
+cd visit
+
+
+wget http://portal.nersc.gov/project/visit/releases/2.13.2/visit2_13_2.linux-x86_64-ubuntu14.tar.gz
+
+tar -zxf visit2_13_2.linux-x86_64-ubuntu14.tar.gz 
+
+cd visit2_13_2.linux-x86_64/
+
+cd bin/
+
+# ./visit to run visit
 

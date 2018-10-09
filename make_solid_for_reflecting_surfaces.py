@@ -28,7 +28,7 @@ parser.add_argument('-he', '--height', type=float, default=40, help='height of w
 parser.add_argument('-sa', '--start_angle', type=float, default=22.5+11.25 )
 parser.add_argument('-ea', '--end_angle', type=float, default=360-11.25)
 parser.add_argument('-a', '--angle', type=float, default=360-45)
-parser.add_argument('-of', '--output_folder', type=str, default='')
+parser.add_argument('-of', '--output_filename', type=str, default='wedge.stp')
 args = parser.parse_args()
 
 
@@ -42,7 +42,7 @@ print('wedge output_folder set to '+str(args.angle))
 
 
 
-def make_cylinder_slice(radius, height, start_angle, end_angle, angle, output_folder_stp):
+def make_cylinder_slice(radius, height, start_angle, end_angle, angle, output_filename):
 
         central_point = Base.Vector(0.00, 0.00, -0.5 * height)
         base_orientation = Base.Vector(0, 0.00, 1)
@@ -60,7 +60,7 @@ def make_cylinder_slice(radius, height, start_angle, end_angle, angle, output_fo
         cylinder_slice.Placement = Base.Placement(Base.Vector(0.00, 0.00, 0.00),
                                    Base.Rotation(FreeCAD.Vector(0, 0, 1), start_angle))
 
-        output_filename = os.path.join(output_folder_stp,'wedge.stp') #'cylinder_slice_start_'+str(start_angle)+'_end_'+str(end_angle)+'_angle_'+str(angle)+'.stp'
+        #'cylinder_slice_start_'+str(start_angle)+'_end_'+str(end_angle)+'_angle_'+str(angle)+'.stp'
         cylinder_slice.exportStep(output_filename)
 
 
@@ -72,7 +72,7 @@ if __name__ == '__main__':
 
     #make_cylinder_slice(start_angle=0, end_angle=22.5, angle=22.5, output_folder_stp='')
     #make_cylinder_slice(start_angle=22.5, end_angle=0, angle=360-22.5, output_folder_stp='')
-    make_cylinder_slice(radius=args.radius, height=args.height, start_angle=args.start_angle, end_angle=args.end_angle, angle=args.angle, output_folder_stp=args.output_folder)
+    make_cylinder_slice(radius=args.radius, height=args.height, start_angle=args.start_angle, end_angle=args.end_angle, angle=args.angle, output_filename=args.output_filename)
 
 # make_cylinder_slice(start_angle=0, end_angle=100, angle=100, output_folder_stp='')
 

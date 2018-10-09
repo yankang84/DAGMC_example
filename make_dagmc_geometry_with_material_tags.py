@@ -7,6 +7,7 @@ cubit.cmd('reset')
 def find_number_of_volumes_in_each_step_file(input_locations):
     body_ids=''
     volumes_in_each_step_file=[]
+    starting_group_id = 5
     for entry in input_locations:
       current_vols =cubit.parse_cubit_list("volume", "all")
       print(entry['filename'])
@@ -14,8 +15,16 @@ def find_number_of_volumes_in_each_step_file(input_locations):
       all_vols =cubit.parse_cubit_list("volume", "all")
       new_vols = set(current_vols).symmetric_difference(set(all_vols))
       new_vols = map(str, new_vols)
-      print(new_vols)
-      entry['volumes']=new_vols
+      print('new_vols',new_vols,type(new_vols))
+      volumes_in_group = cubit.cmd('volume in group '+str(starting_group_id))
+      print('volumes_in_group',volumes_in_group,type(volumes_in_group))
+      cubit.cmd('unite vol '+ ' '.join(new_vols))
+      new_vols_after_unite = set(current_vols).symmetric_difference(set(all_vols))
+      new_vols_after_unite = map(str, new_vols_after_unite)      
+      #cubit.cmd('group '+str(starting_group_id)+' copy rotate 45 about z repeat 7')
+      entry['volumes']=new_vols_after_unite
+      #cubit.cmd('volume in group '+str(starting_group_id)+' copy rotate 45 about z repeat 7')
+      starting_group_id = starting_group_id +1
     return input_locations
 
 def create_graveyard():
@@ -23,13 +32,15 @@ def create_graveyard():
   cubit.cmd('brick x 111')
   cubit.cmd('subtract volume 1 from volume 2')
   cubit.cmd('group "mat:Graveyard" add volume 3')
+  cubit.cmd('volume 3 visibility off')
 
-def load_wedge():
-  #os.system('python make_solid_for_reflecting_surfaces.py')
-  # input_location_wedge = "/home/jshim/Desktop/cylinder_slice_start_0_end_22.5_angle_22.5.stp"
-  input_location_wedge = "wedge.stp"
+def load_reflecting_wedge(input_location_wedge):
+  current_vols =cubit.parse_cubit_list("volume", "all")  
   cubit.cmd('import step "' + input_location_wedge + '" heal')
-  surfaces_in_volume = cubit.parse_cubit_list("surface", " in volume 4")
+  all_vols =cubit.parse_cubit_list("volume", "all")
+  new_vols = set(current_vols).symmetric_difference(set(all_vols))
+  new_vols = map(str, new_vols)  
+  surfaces_in_volume = cubit.parse_cubit_list("surface", " in volume "+' '.join(new_vols))
   print(surfaces_in_volume)
   surface_info_dict = {}
   for surface_id in surfaces_in_volume:
@@ -42,8 +53,18 @@ def load_wedge():
       surface_info_dict[surface_id] = {'reflector':False}
     print()
   print('surface_info_dict',surface_info_dict)
-  cubit.cmd('group "mat:Vacuum" add volume 4')
+  cubit.cmd('group "mat:Vacuum" add volume '+ ' '.join(new_vols))
+  cubit.cmd('volume '+' '.join(new_vols)+' visibility off')
   return surface_info_dict
+
+def load_common_wedge(input_location_wedge):
+  current_vols =cubit.parse_cubit_list("volume", "all")
+  cubit.cmd('import step "' + input_location_wedge + '" no_surfaces no_curves no_vertices heal group common_wedge')
+  all_vols =cubit.parse_cubit_list("volume", "all")
+  new_vols = set(current_vols).symmetric_difference(set(all_vols))
+  new_vols = map(str, new_vols)
+  cubit.cmd('volume '+' '.join(new_vols)+' visibility off')
+  return new_vols  
 
 def byteify(input):
     if isinstance(input, dict):
@@ -70,7 +91,8 @@ def find_reflecting_surfaces(surface_info_dict):
 
 # os.system('python3 make_materials.py')
 create_graveyard()
-wedge_surface_info_dict = load_wedge()
+wedge_surface_info_dict = load_reflecting_wedge(input_location_wedge="reflecting_wedge.stp")
+#common_wedge_volume = load_common_wedge(input_location_wedge="common_wedge.stp")
 
 
 with open('model_description.json') as f:
@@ -78,27 +100,26 @@ with open('model_description.json') as f:
 
 
 
-cubit.cmd('volume 3 visibility off')
-cubit.cmd('volume 4 visibility off')
-
 geometry_details = find_number_of_volumes_in_each_step_file(geometry_details)
 
 print('geometry_details',geometry_details)
 
 for entry in geometry_details:
    cubit.cmd('group "mat:'+entry['material']+'" add volume ' +' '.join(entry['volumes']))
+   #cubit.cmd('unite vol '+ ' '.join(entry['volumes']))
    print(entry)
    if "color" in entry.keys():
     print('color in keys')
     # Available Colors https://www.csimsoft.com/help/appendix/available_colors.htm
     cubit.cmd('Color volume '+' '.join(entry['volumes'])+ ' '+ entry['color'])
 
+#volume in group 12 copy rotate 45 about z repeat 7
 
 
 cubit.cmd('vol all scale 100')
 cubit.cmd('imprint body all')
 #cubit.cmd('merge tolerance 1.e-4')
-cubit.cmd('merge all')
+cubit.cmd('merge vol all group_results tolerance 1.e-4')
 cubit.cmd('graphics tol angle 3')
 
 updated_wedge_surface_info_dict = find_reflecting_surfaces(wedge_surface_info_dict)
@@ -111,8 +132,10 @@ for surface_id in updated_wedge_surface_info_dict.keys():
 
 
 cubit.cmd('set attribute on')
-#cubit.cmd('export dagmc "geometry_and_materials.h5m" faceting_tolerance 1.0e-4')
-cubit.cmd('export dagmc "geometry_with_material_tags.h5m"')
+cubit.cmd('export dagmc "geometry_and_materials.h5m" faceting_tolerance 1.0e-4')
+
+#  cubit.cmd('export dagmc "geometry_with_material_tags.h5m"')
+
 os.system('rm *.jou')
 
 

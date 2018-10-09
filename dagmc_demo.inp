@@ -1,7 +1,21 @@
 this is jons demo dag-mcnp6 file
 c
-sdef x=600 0 0 erg=14.1
+sdef x=600 y=0 z=0 erg=14.1
 print
 nps 1e6
 cut:n j 1 j 1e-11
+c 
+fmesh4:n geom=dag
+fc4 dagmc inp=tetmesh.h5m out=nheat.h5m
+fm4 -1 0 1 -4
+c
+fmesh14:p geom=dag
+fc14 dagmc inp=tetmesh.h5m out=pheat.h5m
+fm14 -1 0 -5 -6
+c
+fmesh24:n geom=dag
+fc24 dagmc inp=tetmesh.h5m out=tbr.h5m
+fm24 -1 0 103
+
+
 

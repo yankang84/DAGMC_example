@@ -31,8 +31,13 @@
      "color":"tan"
      },
     {
-    "filename":"CAD_segmented_by_material/vaccuum_vessel.stp",
-     "material":"tungsten",
+    "filename":"CAD_segmented_by_material/vacuum_vessel_middle.stp",
+     "material":"eurofer",
      "color":"palegreen"
-     }
+     },
+    {
+    "filename":"CAD_segmented_by_material/vacuum_vessel_outer_layer.stp",
+     "material":"tungsten",
+     "color":"green"
+     }     
 ]
