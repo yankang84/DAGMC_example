@@ -132,11 +132,17 @@ for surface_id in updated_wedge_surface_info_dict.keys():
 
 
 cubit.cmd('set attribute on')
-cubit.cmd('export dagmc "geometry_and_materials.h5m" faceting_tolerance 1.0e-4')
+#cubit.cmd('export dagmc "geometry_and_materials.h5m" faceting_tolerance 1.0e-4')
 
-#  cubit.cmd('export dagmc "geometry_with_material_tags.h5m"')
+cubit.cmd('export dagmc "geometry_with_material_tags.h5m" faceting_tolerance 1.0e-2')
 
-os.system('rm *.jou')
 
+
+#cubit.cmd('delete mesh')
+#cubit.cmd('delete volume 3 4')
+#cubit.cmd('Trimesher volume gradation 1.3')
+#cubit.cmd('volume all size auto factor 5')
+#cubit.cmd('mesh volume all')
 
 # additional steps needed for unstructured mesh https://svalinn.github.io/DAGMC/usersguide/tally.html
+os.system('rm *.jou')

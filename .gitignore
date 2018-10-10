@@ -113,3 +113,9 @@ run*
 *.jou
 lcad
 /mcnp_models
+*.h5
+*.stp
+*.step
+/trelis
+out*
+run*

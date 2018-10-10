@@ -7,7 +7,7 @@ post_zip_filename="geometry_with_material_tags_zip.h5m"
 python3 make_materials.py
 
 python2 make_solid_for_reflecting_surfaces.py --radius=50 --height=40 --start_angle=33.75 --end_angle=348.75 --angle=315 --output_filename='reflecting_wedge.stp'
-python2 make_solid_for_reflecting_surfaces.py --radius=50 --height=40 --start_angle=348.75 --end_angle=33.75 --angle=45 --output_filename='common_wedge.stp'
+#python2 make_solid_for_reflecting_surfaces.py --radius=50 --height=40 --start_angle=348.75 --end_angle=33.75 --angle=45 --output_filename='common_wedge.stp'
 
 
 trelis make_dagmc_geometry_with_material_tags.py

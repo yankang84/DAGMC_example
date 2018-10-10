@@ -11,17 +11,42 @@
      "color":"blue"
      },
     {
-    "filename":"CAD_segmented_by_material/divertor.stp",
+    "filename":"CAD_segmented_by_material/divertor_first_layer.stp",
      "material":"tungsten",
      "color":"red"
      },
-    {
-    "filename":"CAD_segmented_by_material/magnets.stp",
+     {
+    "filename":"CAD_segmented_by_material/divertor_second_layer.stp",
+     "material":"eurofer",
+     "color":"blue"
+     },
+     {
+    "filename":"CAD_segmented_by_material/divertor_third_layer.stp",
+     "material":"tungsten",
+     "color":"red"
+     },
+     {
+    "filename":"CAD_segmented_by_material/divertor_last_layer.stp",
+     "material":"eurofer",
+     "color":"blue"
+     },             
+     {
+    "filename":"CAD_segmented_by_material/magnets_poloidal.stp",
      "material":"tungsten",
      "color":"grey"
      },
+     {
+    "filename":"CAD_segmented_by_material/magnets_toroidal.stp",
+     "material":"tungsten",
+     "color":"blue"
+     },
+               {
+    "filename":"CAD_segmented_by_material/magnets_toroidal_casing.stp",
+     "material":"tungsten",
+     "color":"pink"
+     },
     {
-    "filename":"CAD_segmented_by_material/plasma.stp",
+    "filename":"CAD_segmented_by_material/plasma_regularised.stp",
      "material":"tungsten",
      "color":"hotpink"
      },

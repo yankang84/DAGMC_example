@@ -53,7 +53,7 @@ eurofer_2016 = Material({'Fe' : 0.88821,
                     'W' : 0.011,
                     })
 eurofer_2016.density = 7.87 
-eurofer_2016 = eurofer.expand_elements()
+eurofer_2016 = eurofer_2016.expand_elements()
 
 #this needs changing to be the 2017 version
 eurofer = Material({'Fe' : 0.88821,
