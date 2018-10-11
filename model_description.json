@@ -2,7 +2,8 @@
     {
     "filename":"CAD_segmented_by_material/blankets.stp",
      "material":"eurofer",
-     "color":"red"
+     "color":"red",
+     "scale":1000
      },
 
     {
@@ -32,21 +33,21 @@
      },             
      {
     "filename":"CAD_segmented_by_material/magnets_poloidal.stp",
-     "material":"tungsten",
+     "material":"Austenitic_steel_316L_N_IG",
      "color":"grey"
      },
      {
-    "filename":"CAD_segmented_by_material/magnets_toroidal.stp",
+    "filename":"CAD_segmented_by_material/magnets_toroidal.sat",
      "material":"tungsten",
      "color":"blue"
      },
                {
-    "filename":"CAD_segmented_by_material/magnets_toroidal_casing.stp",
-     "material":"tungsten",
+    "filename":"CAD_segmented_by_material/magnets_toroidal_casing.sat",
+     "material":"Austenitic_steel_316L_N_IG",
      "color":"pink"
      },
     {
-    "filename":"CAD_segmented_by_material/plasma_regularised.stp",
+    "filename":"CAD_segmented_by_material/plasma.stp",
      "material":"tungsten",
      "color":"hotpink"
      },
@@ -62,7 +63,7 @@
      },
     {
     "filename":"CAD_segmented_by_material/vacuum_vessel_outer_layer.stp",
-     "material":"tungsten",
+     "material":"Austenitic_steel_316L_N_IG",
      "color":"green"
      }     
 ]
