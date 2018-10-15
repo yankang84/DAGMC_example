@@ -18,6 +18,8 @@ echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$INSTALL_PATH/lib' >> ~/.bashrc
 
 echo 'export PATH=$PATH:/opt/Trelis-16.5/bin/' >> ~/.bashrc 
 
+echo 'export PATH=$PATH:$HOME/opt/visit2_13_2.linux-x86_64/bin/' >> ~/.bashrc 
+
 DAGMC_PATH=$HOME/dagmc_bld' >> ~/.bashrc 
 
 echo 'export PATH=$DAGMC_PATH/HDF5/bin:$PATH' >> ~/.bashrc 

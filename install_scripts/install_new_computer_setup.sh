@@ -193,3 +193,7 @@ sudo apt -y install git
 sudo add-apt-repository ppa:freecad-maintainers/freecad-stable
 sudo apt-get update 
 sudo apt-get install freecad freecad-doc && sudo apt-get upgrade 
+
+
+#multi screen work spaces
+sudo apt install gnome-tweak-tool

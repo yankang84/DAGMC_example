@@ -15,26 +15,29 @@ def find_number_of_volumes_in_each_step_file(input_locations):
         import_type = 'acis'
       if entry['filename'].endswith('.stp') or entry['filename'].endswith('.step'):
         import_type = 'step'
-      cubit.cmd('import '+import_type+' "' + entry['filename'] + '" separate_bodies no_surfaces no_curves no_vertices heal group "'+str(entry['filename'])+'"')
+      cubit.cmd('import '+import_type+' "' + entry['filename'] + '" separate_bodies no_surfaces no_curves no_vertices group "'+str(entry['filename'])+'"')
       all_vols =cubit.parse_cubit_list("volume", "all")
       new_vols = set(current_vols).symmetric_difference(set(all_vols))
       new_vols = map(str, new_vols)
       print('new_vols',new_vols,type(new_vols))
+      current_bodies = cubit.parse_cubit_list("body","all")
+      print('current_bodies',current_bodies)
       volumes_in_group = cubit.cmd('volume in group '+str(starting_group_id))
       print('volumes_in_group',volumes_in_group,type(volumes_in_group))
-      cubit.cmd('unite vol '+ ' '.join(new_vols))
+      cubit.cmd('unite vol '+ ' '.join(new_vols)+ ' with vol '+' '.join(new_vols))
       new_vols_after_unite = set(current_vols).symmetric_difference(set(all_vols))
       new_vols_after_unite = map(str, new_vols_after_unite)      
       #cubit.cmd('group '+str(starting_group_id)+' copy rotate 45 about z repeat 7')
       entry['volumes']=new_vols_after_unite
       #cubit.cmd('volume in group '+str(starting_group_id)+' copy rotate 45 about z repeat 7')
       starting_group_id = starting_group_id +1
+    cubit.cmd('separate body all')
     return input_locations
 
 def create_graveyard():
   #this could be replaced with a bounding box
-  cubit.cmd('brick x 110')
-  cubit.cmd('brick x 111')
+  cubit.cmd('brick x 11000')
+  cubit.cmd('brick x 11100')
   cubit.cmd('subtract volume 1 from volume 2')
   cubit.cmd('group "mat:Graveyard" add volume 3')
   cubit.cmd('volume 3 visibility off')
@@ -94,26 +97,23 @@ def find_reflecting_surfaces(surface_info_dict):
             surface_info_dict[surface_id]= {'reflector':True}
     return surface_info_dict
 
+def scale_geometry(geometry_details):
+  for entry in geometry_details:
+    if 'scale' in entry.keys():
+      cubit.cmd('volume ' +' '.join(entry['volumes'] + ' scale ' + str(entry['scale']))
 
 create_graveyard()
 wedge_surface_info_dict = load_reflecting_wedge(input_location_wedge="reflecting_wedge.stp")
 #common_wedge_volume = load_common_wedge(input_location_wedge="common_wedge.stp")
 
-
 with open('model_description.json') as f:
     geometry_details = byteify(json.load(f))
-
-def scale_geometry(geometry_details):
-  for entry in geometry_details:
-    if 'scale' in entry.keys():
-      cubit.cmd('volume ' +' '.join(entry['volumes'] + ' scale ')
-
 
 geometry_details = find_number_of_volumes_in_each_step_file(geometry_details)
 
 scale_geometry(geometry_details)
-
 print('geometry_details',geometry_details)
+#cubit.cmd('vol all scale 0.1')
 
 for entry in geometry_details:
    cubit.cmd('group "mat:'+entry['material']+'" add volume ' +' '.join(entry['volumes']))
@@ -128,7 +128,7 @@ for entry in geometry_details:
 
 cubit.cmd('imprint body all')
 #cubit.cmd('merge tolerance 1.e-4')
-cubit.cmd('merge vol all group_results tolerance 1.e-4')
+cubit.cmd('merge vol all group_results')
 cubit.cmd('graphics tol angle 3')
 
 updated_wedge_surface_info_dict = find_reflecting_surfaces(wedge_surface_info_dict)
@@ -141,21 +141,22 @@ for surface_id in updated_wedge_surface_info_dict.keys():
 
 
 cubit.cmd('set attribute on')
-#cubit.cmd('export dagmc "geometry_and_materials.h5m" faceting_tolerance 1.0e-4')
+#cubit.cmd('export dagmc "geometry_with_material_tags.h5m" faceting_tolerance 1.0e-4')
 
-cubit.cmd('export dagmc "geometry_with_material_tags.h5m" faceting_tolerance 1.0e-2')
+#cubit.cmd('export dagmc "geometry_with_material_tags.h5m" faceting_tolerance 1.0e-2')
 
+
+cubit.cmd('delete volume 3 4')
+cubit.cmd('delete mesh')
 current_vols =cubit.parse_cubit_list("volume", "all")
 
-cubit.cmd('delete mesh')
-cubit.cmd('delete volume 3 4')
-#
-#cubit.cmd('Trimesher volume gradation 1.3')
-#cubit.cmd('volume all size auto factor 5')
-#
+cubit.cmd('Trimesher volume gradation 1.3')
+cubit.cmd('volume all size auto factor 3')
+
 
 for volume in current_vols:
   cubit.cmd('volume all scheme tetmesh proximity layers off geometric sizing on')
+  cubit.cmd('volume '+str(volume)+' size auto factor 5')
   cubit.cmd('mesh volume '+str(volume))
 
 for volume in current_vols:
@@ -166,3 +167,4 @@ cubit.cmd('save as "tetmesh.cub" overwrite')
 # additional steps needed for unstructured mesh https://svalinn.github.io/DAGMC/usersguide/tally.html
 os.system('rm *.jou')
 
+os.system('mbconvert tetmesh.cub tetmesh.vtk')
