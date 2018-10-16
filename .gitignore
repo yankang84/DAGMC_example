@@ -115,7 +115,10 @@ lcad
 /mcnp_models
 *.h5
 *.stp
+*.stl
 *.step
 /trelis
 out*
 run*
+lcad_modified
+lcad_modified~

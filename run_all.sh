@@ -26,8 +26,9 @@ rm runtp*
 rm out*
 
 
-mcnp6.mpi i=dagmc_demo.inp g=$post_zip_filename
+
+mcnp6.mpi i=dagmc_demo.inp g=$post_zip_filename xsdir xsdir='jeff33_mod.xsdir'
 
 
-mbconvert tetmesh.cub tetmesh.h5m
-mbconvert tetmesh.h5m tetmesh.vtk
+#mbconvert tetmesh.cub tetmesh.h5m
+#mbconvert tetmesh.h5m tetmesh.vtk

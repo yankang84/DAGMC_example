@@ -143,21 +143,31 @@ for surface_id in updated_wedge_surface_info_dict.keys():
 cubit.cmd('set attribute on')
 #cubit.cmd('export dagmc "geometry_with_material_tags.h5m" faceting_tolerance 1.0e-4')
 
-#cubit.cmd('export dagmc "geometry_with_material_tags.h5m" faceting_tolerance 1.0e-2')
+cubit.cmd('export dagmc "geometry_with_material_tags.h5m" faceting_tolerance 1.0e-2')
 
+os.system('mbconvert geometry_with_material_tags.h5m geometry_with_material_tags.stl')
+
+cubit.cmd('save as "geometry_with_material_tags.cub" overwrite')
 
 cubit.cmd('delete volume 3 4')
 cubit.cmd('delete mesh')
 current_vols =cubit.parse_cubit_list("volume", "all")
 
 cubit.cmd('Trimesher volume gradation 1.3')
-cubit.cmd('volume all size auto factor 3')
+cubit.cmd('volume all size auto factor 5')
 
-
-for volume in current_vols:
-  cubit.cmd('volume all scheme tetmesh proximity layers off geometric sizing on')
-  cubit.cmd('volume '+str(volume)+' size auto factor 5')
-  cubit.cmd('mesh volume '+str(volume))
+for entry in geometry_details:
+  for volume in entry['volumes']:
+    cubit.cmd('volume '+str(volume)+' size auto factor 6')
+    cubit.cmd('volume all scheme tetmesh proximity layers off geometric sizing on')
+    if 'mesh_size' in entry.keys():
+      cubit.cmd('volume '+str(volume)+' size 0.5')
+    cubit.cmd('mesh volume '+str(volume))
+    
+# for volume in current_vols:
+#   cubit.cmd('volume '+str(volume)+' size auto factor 4')
+#   cubit.cmd('volume all scheme tetmesh proximity layers off geometric sizing on')
+#   cubit.cmd('mesh volume '+str(volume))
 
 for volume in current_vols:
   print('volume id ', volume, ' is meshed = ', cubit.is_meshed('vol',volume))
@@ -166,5 +176,7 @@ cubit.cmd('save as "tetmesh.cub" overwrite')
 
 # additional steps needed for unstructured mesh https://svalinn.github.io/DAGMC/usersguide/tally.html
 os.system('rm *.jou')
+os.system('rm *.log')
 
-os.system('mbconvert tetmesh.cub tetmesh.vtk')
+os.system('mbconvert tetmesh.cub tetmesh.h5m')
+os.system('mbconvert tetmesh.h5m tetmesh.vtk')

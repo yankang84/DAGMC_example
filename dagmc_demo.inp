@@ -25,20 +25,10 @@ c
 c
 c
 c dpa 
-fmesh34:n geom=dag
-fc34 dagmc inp=tetmesh.h5m out=tbr.h5m
-fm34 -1 0 444
-c
-c
-c
-C The mesh tally for the dpa damage of the NB system:
-C       DPA/s in NB system
 C      constant = 0.8*(1e+6[eV/MeV]/2*Ed [eV])* F4-factor [1/s] * 1e-24 [cm^2/barn]
-FMESH54:N geom=rec origin=1175 -213 -300
-     imesh = 1823 iints = 324
-     jmesh = 210 jints = 212    
-     kmesh = 300 kints = 300
-FM54 7.232 0 444
-
-
-
+fmesh34:n geom=dag
+fc34 dagmc inp=tetmesh.h5m out=dpa.h5m
+fm34 7.232 0 444
+c
+c
+c
