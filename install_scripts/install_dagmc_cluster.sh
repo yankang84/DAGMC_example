@@ -2,13 +2,16 @@
 
 export PATH=$PATH:$HOME/dagmc_bld/HDF5/bin
 
+export PATH=$PATH:$HOME/visit/visit2_13_2.linux-x86_64/bin
+
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/dagmc_bld/HDF5/lib
 
 export PATH=$PATH:$HOME/dagmc_bld/MOAB/bin
 
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/dagmc_bld/MOAB/lib
 
-export DATAPATH=$HOME/xdata
+#export DATAPATH=$HOME/xdata this is for local installation
+export DATAPATH=/home/mcnp/xs
 
 INSTALL_PATH=$HOME/dagmc_bld/DAGMC
 
@@ -137,3 +140,4 @@ cd bin/
 rm $HOME/visit2_13_2.linux-x86_64-ubuntu14.tar.gz 
 
 rm $HOME/dagmc_bld/HDF5/hdf5-1.8.13.tar.gz
+

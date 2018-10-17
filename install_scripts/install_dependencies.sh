@@ -32,5 +32,3 @@ pip3 install pytest
 
 sudo apt -y install git
 
-
-

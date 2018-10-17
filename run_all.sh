@@ -6,11 +6,11 @@ post_zip_filename="geometry_with_material_tags_zip.h5m"
 
 python3 make_materials.py
 
-python2 make_solid_for_reflecting_surfaces.py --radius=5000 --height=4000 --start_angle=33.75 --end_angle=348.75 --angle=315 --output_filename='reflecting_wedge.stp'
-python2 make_solid_for_reflecting_surfaces.py --radius=5000 --height=4000 --start_angle=348.75 --end_angle=33.75 --angle=45 --output_filename='common_wedge.stp'
-
-
 trelis make_dagmc_geometry_with_material_tags.py
+
+mbconvert tetmesh.cub tetmesh.h5m
+mbconvert tetmesh.h5m tetmesh.vtk
+
 
 make_watertight $filename
 
@@ -27,7 +27,7 @@ rm out*
 
 
 
-mcnp6.mpi i=dagmc_demo.inp g=$post_zip_filename xsdir xsdir='jeff33_mod.xsdir'
+mcnp6.mpi i=dagmc_demo.inp g=$post_zip_filename xsdir='jeff33_mod.xsdir'
 
 
 #mbconvert tetmesh.cub tetmesh.h5m

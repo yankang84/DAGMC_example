@@ -33,6 +33,14 @@ wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add
 sudo apt-add-repository "deb https://download.sublimetext.com/ apt/stable/"
 sudo apt -y install sublime-text
 
+# add python 3 build system (Ctrl +b) to sublime
+#Tools -> Build System -> New Build System 
+# {
+#     "cmd": ["python3", "-i", "-u", "$file"],
+#     "file_regex": "^[ ]File \"(...?)\", line ([0-9]*)",
+#     "selector": "source.python"
+# }
+
 #atom
 curl -sL https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add -
 sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'

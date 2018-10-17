@@ -23,12 +23,3 @@ fc24 dagmc inp=tetmesh.h5m out=tbr.h5m
 fm24 -1 0 103
 c
 c
-c
-c dpa 
-C      constant = 0.8*(1e+6[eV/MeV]/2*Ed [eV])* F4-factor [1/s] * 1e-24 [cm^2/barn]
-fmesh34:n geom=dag
-fc34 dagmc inp=tetmesh.h5m out=dpa.h5m
-fm34 7.232 0 444
-c
-c
-c
