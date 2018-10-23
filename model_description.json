@@ -1,17 +1,17 @@
 [
     {
         "filename":"CAD_segmented_by_material/blankets.sat",
-        "material":"eurofer",
+        "material":"homogenised_blanket",
         "color":"red"
     },
     {
         "filename":"CAD_segmented_by_material/central_sol.sat",
-        "material":"eurofer",
+        "material":"homogenised_magnet",
         "color":"blue"
     },
     {
         "filename":"CAD_segmented_by_material/divertor_third_layer.sat",
-        "material":"tungsten",
+        "material":"tungsten_reduced_density",
         "color":"red",
         "mesh_size":0.5
     },
@@ -22,72 +22,72 @@
     },
     {
         "filename":"CAD_segmented_by_material/divertor_second_layer.sat",
-        "material":"eurofer",
+        "material":"tungsten_water_cucrzr_copper",
         "color":"blue"
     },
     {
         "filename":"CAD_segmented_by_material/divertor_last_layer.sat",
-        "material":"eurofer",
+        "material":"water_steel",
         "color":"yellow"
     },             
     {
         "filename":"CAD_segmented_by_material/magnets_poloidal.sat",
-        "material":"Austenitic_steel_316L_N_IG",
+        "material":"homogenised_magnet",
         "color":"grey"
     },
     {
         "filename":"CAD_segmented_by_material/magnets_toroidal.sat",
-        "material":"tungsten",
+        "material":"homogenised_magnet",
         "color":"blue"
     },
     {
         "filename":"CAD_segmented_by_material/magnets_toroidal_casing.sat",
-        "material":"Austenitic_steel_316L_N_IG",
+        "material":"SS-316L(N)-IG",
         "color":"pink"
     },
     {
         "filename":"CAD_segmented_by_material/plasma.sat",
-        "material":"tungsten",
+        "material":"Vacuum",
         "color":"hotpink"
     },
     {
         "filename":"CAD_segmented_by_material/port_plugs.sat",
-        "material":"tungsten",
+        "material":"?????",
         "color":"tan"
     },
     {
         "filename":"CAD_segmented_by_material/vacuum_vessel_middle.sat",
-        "material":"eurofer",
+        "material":"SS316_vol_0.6_and_H2O_vol_0.4",
         "color":"palegreen"
     },
     {
         "filename":"CAD_segmented_by_material/vacuum_vessel_outer_layer.sat",
-        "material":"Austenitic_steel_316L_N_IG",
+        "material":"SS-316L(N)-IG",
         "color":"green"
     },    
     {
         "filename":"CAD_segmented_by_material/port_outer.sat",
-        "material":"eurofer",
+        "material":"????",
         "color":"blue"
     },
     {
         "filename":"CAD_segmented_by_material/port_middle_layer.sat",
-        "material":"eurofer",
+        "material":"????",
         "color":"green"
     },    
     {
         "filename":"CAD_segmented_by_material/port_inner.sat",
-        "material":"eurofer",
+        "material":"????",
         "color":"pink"
     },
     {
         "filename":"CAD_segmented_by_material/cryostat.sat",
-        "material":"eurofer",
+        "material":"SS-316L(N)-IG",
         "color":"yellow"
      },
      {
         "filename":"CAD_segmented_by_material/bioshield.sat",
-        "material":"eurofer",
+        "material":"concrete_with_rebar",
         "color":"tan"
      }
 ]
