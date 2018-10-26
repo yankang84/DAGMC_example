@@ -2,6 +2,9 @@
 import os
 import json
 
+os.system('rm *.log')
+os.system('rm *.jou')
+
 cubit.cmd('reset')
 
 def find_number_of_volumes_in_each_step_file(input_locations):
@@ -68,6 +71,7 @@ def create_graveyard():
   print('graveyard vols =',graveyard_vol)
   cubit.cmd('group "mat:Graveyard" add volume '+graveyard_vol)
   cubit.cmd('volume '+graveyard_vol+' visibility off')
+  return graveyard_vol
 
 def load_reflecting_wedge(input_location_wedge):
   current_vols =cubit.parse_cubit_list("volume", "all")  
@@ -152,7 +156,7 @@ geometry_details = find_number_of_volumes_in_each_step_file(geometry_details)
 
 scale_geometry(geometry_details)
 
-create_graveyard()
+graveyard_vol = create_graveyard()
 
 color_geometry(geometry_details)
 
@@ -177,3 +181,13 @@ cubit.cmd('export dagmc "geometry_with_material_tags.h5m" faceting_tolerance 1.0
 #os.system('mbconvert geometry_with_material_tags.h5m geometry_with_material_tags.stl')
 
 cubit.cmd('save as "geometry_with_material_tags.cub" overwrite')
+
+
+
+cubit.cmd('delete group "mat:Graveyard"')
+cubit.cmd('delete group "mat:Vacuum"')
+cubit.cmd('delete volume '+wedge_volume)
+cubit.cmd('delete volume '+graveyard_vol)
+cubit.cmd('save as "geometry_with_material_tags_without_extra_vols.cub" overwrite')
+with open('geometry_details.json', 'w') as outfile:
+    json.dump(geometry_details, outfile)
