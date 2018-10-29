@@ -20,16 +20,16 @@ os.system('rm *.jou')
 
 cubit.cmd('reset')
 
-cubit.cmd('open "geometry_with_material_tags_without_extra_vols.cub"')
+cubit.cmd('open "geometry_with_material_tags_without_extra_vols.trelis"')
 
 cubit.cmd('set attribute on')
 #cubit.cmd('export dagmc "geometry_with_material_tags.h5m" faceting_tolerance 1.0e-4')
 
-cubit.cmd('export dagmc "geometry_with_material_tags.h5m" faceting_tolerance 1.0e-2')
+#cubit.cmd('export dagmc "geometry_with_material_tags.h5m" faceting_tolerance 1.0e-2')
 
-os.system('mbconvert geometry_with_material_tags.h5m geometry_with_material_tags.stl')
+#os.system('mbconvert geometry_with_material_tags.h5m geometry_with_material_tags.stl')
 
-cubit.cmd('save as "geometry_with_material_tags.cub" overwrite')
+#cubit.cmd('save as "geometry_with_material_tags.cub" overwrite')
 
 cubit.cmd('delete mesh')
 current_vols =cubit.parse_cubit_list("volume", "all")
@@ -59,8 +59,8 @@ for volume in current_vols:
 cubit.cmd('save as "tetmesh.cub" overwrite')
 
 # additional steps needed for unstructured mesh https://svalinn.github.io/DAGMC/usersguide/tally.html
-os.system('rm *.jou')
-os.system('rm *.log')
+# os.system('rm *.jou')
+# os.system('rm *.log')
 
-os.system('mbconvert tetmesh.cub tetmesh.h5m')
-os.system('mbconvert tetmesh.h5m tetmesh.vtk')
+# os.system('mbconvert tetmesh.cub tetmesh.h5m')
+# os.system('mbconvert tetmesh.h5m tetmesh.vtk')

@@ -3,7 +3,7 @@ c
 sdef x=600 y=0 z=0 erg=14.1
 print
 mode n p 
-nps 1e6
+nps 1e4
 cut:n    j 1e-11  0.2  0.1  j
 cut:p 1e+7 1e-3  -0.5 -0.25 j
 c 

@@ -21,10 +21,9 @@ from FreeCAD import Base
 
 
 
-
 parser = argparse.ArgumentParser()
-parser.add_argument('-r', '--radius', type=float, default=50, help='radius of wedge in meters')
-parser.add_argument('-he', '--height', type=float, default=40, help='height of wedge in meters')
+parser.add_argument('-r', '--radius', type=float, default=5000, help='radius of wedge in mm')
+parser.add_argument('-he', '--height', type=float, default=4000, help='height of wedge in mm')
 parser.add_argument('-sa', '--start_angle', type=float, default=22.5+11.25 )
 parser.add_argument('-ea', '--end_angle', type=float, default=360-11.25)
 parser.add_argument('-a', '--angle', type=float, default=360-45)

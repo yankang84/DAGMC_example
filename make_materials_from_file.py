@@ -84,6 +84,12 @@ my_material_library['steel_vol_60_water_vol_40'] = mcnp_lib_nbi_2017[160].expand
 # my_material_library['steel_vol_60_water_vol_40'].metadata='used in lower port plug SS316L(N) - 60%, water (31 bar, 200 C) - 40%'
 
 
+my_material_library['steel_vol_45_copper_vol_40_alumina_vol_10_water_vol_5'] = mcnp_lib_nbi_2017[77].expand_elements()
+# my_material_library['steel_vol_60_water_vol_40'].metadata='used in the ion source case 45% SS 316 40% Cu 10% Alumina 5% Water'
+
+my_material_library['steel_vol_45_copper_vol_40_alumina_vol_10_water_vol_5'] = mcnp_lib_nbi_2017[73].expand_elements()
+# my_material_library['steel_vol_60_water_vol_40'].metadata='used in the ion source case 45% SS 316 40% Cu 10% Alumina 5% Water'
+
 # nbi body m73
 # nbi other parts m71 m72 m74 m75 m76 m77 m78
 

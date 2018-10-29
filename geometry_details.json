@@ -1,0 +1,78 @@
+[
+    {
+        "color": "yellow", 
+        "material": "SS-316L(N)-IG", 
+        "volumes": [
+            "1"
+        ], 
+        "filename": "CAD_segmented_by_material/cryostat.sat"
+    }, 
+    {
+        "color": "blue", 
+        "material": "SS-316L(N)-IG", 
+        "volumes": [
+            "2", 
+            "3"
+        ], 
+        "filename": "CAD_segmented_by_material/port_outer.sat"
+    }, 
+    {
+        "color": "green", 
+        "material": "eurofer", 
+        "volumes": [
+            "4", 
+            "5", 
+            "6", 
+            "7", 
+            "8", 
+            "9", 
+            "10"
+        ], 
+        "filename": "CAD_segmented_by_material/port_middle_layer.sat"
+    }, 
+    {
+        "color": "red", 
+        "material": "eurofer", 
+        "volumes": [
+            "11", 
+            "12", 
+            "13", 
+            "14", 
+            "15", 
+            "16", 
+            "17"
+        ], 
+        "filename": "CAD_segmented_by_material/port_inner.sat"
+    }, 
+    {
+        "color": "yellow", 
+        "surface_reflectivity": {
+            "352": {
+                "reflector": false
+            }, 
+            "353": {
+                "reflector": false
+            }, 
+            "354": {
+                "reflector": false
+            }, 
+            "3": {
+                "reflector": true
+            }, 
+            "1": {
+                "reflector": true
+            }, 
+            "401": {
+                "reflector": true
+            }, 
+            "402": {
+                "reflector": true
+            }
+        }, 
+        "material": "Vacuum", 
+        "volumes": [
+            "18"
+        ], 
+        "filename": "CAD_segmented_by_material/reflecting_wedge.stp"
+    }
+]
