@@ -21,11 +21,11 @@ INSTALL_PATH=/home/mcnp/mcnpexecs/dagmc_mcnp611
 
 export HDF5_LIBRARIES=/home/jshim/dagmc_bld/HDF5/lib
 export HDF5_ROOT=/home/jshim/dagmc_bld/HDF5
-export PATH=$PATH:/home/jshim/dagmc_bld/HDF5/bin
+export PATH=/home/jshim/dagmc_bld/HDF5/bin:$PATH
 
 export PATH=$PATH:/home/jshim/visit/visit2_13_2.linux-x86_64/bin
 
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/jshim/dagmc_bld/HDF5/lib
+export LD_LIBRARY_PATH=/home/jshim/dagmc_bld/HDF5/lib/:$LD_LIBRARY_PATH
 
 export PATH=$PATH:/home/jshim/dagmc_bld/MOAB/bin
 
@@ -35,7 +35,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/jshim/dagmc_bld/HDF5/lib
 #export DATAPATH=$HOME/xdata this is for local installation
 export DATAPATH=/home/mcnp/xs
 
-INSTALL_PATH=/home/mcnp/mcnpsource/DAGMC_MCNP611
+#INSTALL_PATH=/home/mcnp/mcnpsource/DAGMC_MCNP611
 INSTALL_PATH=/home/mcnp/mcnpexecs/DAGMC_MCNP611
 
 cd $HOME
@@ -80,7 +80,7 @@ sudo apt-get install -y libtool
 
 sudo apt install -y autoconf
 
-autoreconf -fi
+#autoreconf -fi
 
 sudo apt-get install devscripts
 
@@ -94,8 +94,11 @@ ln -s moab src
 
 cd bld
 
-../src/configure --enable-optimize --enable-shared --disable-debug --with-hdf5=$HOME/dagmc_bld/HDF5 --prefix=$HOME/dagmc_bld/MOAB
+#autotools
+#../src/configure --enable-optimize --enable-shared --disable-debug --with-hdf5=$HOME/dagmc_bld/HDF5 --prefix=$HOME/dagmc_bld/MOAB
 
+#ifort requires change to moab/util.h
+CC=icc CXX=icpc FC=ifort CFLAGS='-fPIC' CXXFLAGS='-fPIC' cmake .. -DENABLE_HDF5=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=.. 
 
 make
 
@@ -144,11 +147,21 @@ cd /home/mcnp/mcnpsource/DAGMC_MCNP611/DAGMC/bld
 
 rm -rf *
 
-cmake .. -DCMAKE_INSTALL_PREFIX=$INSTALL_PATH -DMOAB_ROOT=/home/jshim/dagmc_bld/MOAB/lib -DBUILD_MCNP6=on -DMCNP6_DATAPATH=$DATAPATH -DMPI_BUILD=on -DBUILD_STATIC=ON 
+#cmake .. -DCMAKE_INSTALL_PREFIX=$INSTALL_PATH -DMOAB_ROOT=/home/jshim/dagmc_bld/MOAB/lib -DBUILD_MCNP6=on -DMCNP6_DATAPATH=$DATAPATH -DMPI_BUILD=on -DBUILD_STATIC=ON 
+
+CC=icc CXX=icpc FC=ifort cmake .. -DMOAB_ROOT=$HOME/DAGMCV3/moab/lib64/ -DBUILD_MCNP6=ON -DMPI_BUILD=ON -DMCNP6_DATAPATH=/home/mcnp/xs -DCMAKE_INSTALL_PREFIX=$HOME/mcnpexec/dag-mcnp611/
 
 make -j
 
 make install
+
+cd ..
+cd lib
+export LD_LIBRARY_PATH=/home/mcnp/DAGMCV3/moab/lib64:/home/mcnp/mcnpexecs/dag-mcnp611/lib/:$LD_LIBRARY_PATH
+
+cd ../test
+for i in `ls test_*` ; do ./$i ; done
+cd ..
 
 chmod o-rx /home/mcnp/mcnpexecs/dagmc_mcnp611/bin/*
 chmod g+rx /home/mcnp/mcnpexecs/dagmc_mcnp611/bin/*

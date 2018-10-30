@@ -6,7 +6,7 @@ export DATAPATH=$HOME/xdata
 
 mkdir DATAPATH
 
-cp additional_files/xsdir DATAPATH
+cp additional_files/jeff33_fendl31d_xsdir DATAPATH
 
 cd $DATAPATH
 

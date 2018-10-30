@@ -54,7 +54,7 @@ for entry in geometry_details:
 #   cubit.cmd('mesh volume '+str(volume))
 
 for volume in current_vols:
- print('volume id ', volume, ' is meshed = ', cubit.is_meshed('vol',volume))
+  print('volume id ', volume, ' is meshed = ', cubit.is_meshed('vol',volume))
 
 cubit.cmd('save as "tetmesh.cub" overwrite')
 
