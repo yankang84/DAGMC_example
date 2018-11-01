@@ -3,7 +3,7 @@
 from pyne.material import Material,MaterialLibrary,MultiMaterial
 from pyne.mcnp import mats_from_inp
 from pprint import pprint
-
+from pyne import mcnp, nucname
 import os
 
 def check_materials_are_the_same(mat1,mat2):
@@ -104,12 +104,26 @@ for entry in my_material_library.keys():
         print(my_material_library[entry])
         raise ValueError('density of material is -1, which happens when the material density is not set')
 
+
+new_lib = "50m"
+new_lib = ""
+for m in my_material_library:
+    mat = my_material_library[m]
+    table_ids = {str(nucname.zzzaaa(key)): new_lib for key, value in mat.comp.items()}
+    mat.metadata['table_ids'] = table_ids
+    mat.metadata['mat_number'] = int(mat.metadata['mat_number'])
+    my_material_library[m] = mat
+
+
 my_material_library.write_hdf5("materials.h5")
 print('Finished creating Pyne materials, materials saved as "materials.h5"')
 
 
-
-
+#for key, value in my_material_library['homogenised_blanket'].metadata['table_ids']:
+#    print(key,value)
+# for key in my_material_library['homogenised_blanket'].keys():
+#     print(key)
+# print(my_material_library['homogenised_blanket']['30060000'])
 #sometimes the string version of the int causes an error
 # for item in mat_lib.keys():
 #     print(item)

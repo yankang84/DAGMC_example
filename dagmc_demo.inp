@@ -1,14 +1,15 @@
-this is jons demo dag-mcnp6 file
+c This dag-mcnp6 file was made used DAGMC_example
+c https://github.com/Shimwell/DAGMC_example 
 c
 sdef x=600 y=0 z=0 erg=14.1
 print
-mode n p 
+mode n p
 nps 1e7
 cut:n    j 1e-11  0.2  0.1  j
 cut:p 1e+7 1e-3  -0.5 -0.25 j
 c
-c neutron flux
-fmesh4:n geom=dag
+c neutron spectra on mesh
+fmesh734:n geom=dag
        EMESH=1.0000E-07  4.1399E-07  5.3158E-07  6.8256E-07  8.7643E-07 
        1.1254E-06  1.4450E-06  1.8554E-06  2.3824E-06  3.0590E-06 
        3.9279E-06  5.0435E-06  6.4760E-06  8.3153E-06  1.0677E-05 
@@ -44,39 +45,10 @@ fmesh4:n geom=dag
        1.1052E+01  1.1618E+01  1.2214E+01  1.2523E+01  1.2840E+01 
        1.3499E+01  1.3840E+01  1.4191E+01  1.4550E+01  1.4918E+01 
        1.5683E+01  1.6487E+01  1.6905E+01  1.7333E+01  1.9640E+01
-fc4 dagmc inp=tetmesh.h5m out=specflux.h5m
-c
-c neutron flux on mesh
-fmesh14:n geom=dag
-fc14 dagmc inp=tetmesh.h5m out=nflux.h5m
-c
-c neutron heating on mesh
-fmesh24:n geom=dag
-fc24 dagmc inp=tetmesh.h5m out=nheat.h5m
-fm24 -1 0 1 -4
-c
-c photon heating on mesh
-fmesh34:p geom=dag
-fc34 dagmc inp=tetmesh.h5m out=pheat.h5m
-fm34 -1 0 -5 -6
+fc734 dagmc inp=tetmesh.h5m out=tally_neutron_spectra.h5m
 c
 c tritium production on mesh
-fmesh44:n geom=dag
-fc44 dagmc inp=tetmesh.h5m out=tbr.h5m
-fm44 -1 0 103
-c
-c
-c 
-f54:n 70
-fc54 tritium_breeding_ratio
-fm54 -1 0 205
-c
-c
-c
-c 
-f26:n 70
-fc26 integrated_neutron_heat_deposition_in_the_blanket
-c
-f36:p 70
-fc26 integrated_photon_heat_deposition_in_the_blanket
+fmesh744:n geom=dag
+fc744 dagmc inp=tetmesh.h5m out=tally_tbr.h5m
+fm744 -1 0 205
 c
