@@ -107,7 +107,6 @@ venv.bak/
 /CAD_segmented_by_material
 *.h5m
 fcad
-run*
 *.cub
 *.vtk
 *.jou
@@ -119,7 +118,7 @@ lcad
 *.step
 /trelis
 out*
-run*
+runt*
 lcad_modified
 lcad_modified~
 /old*
