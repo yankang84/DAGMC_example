@@ -5,7 +5,10 @@ import json
 # os.system('rm *.log')
 # os.system('rm *.jou')
 
-cubit.cmd('reset')
+#cubit.cmd('reset')
+
+
+
 
 
 def find_number_of_volumes_in_each_step_file(input_locations):
@@ -144,7 +147,31 @@ def color_geometry(geometry_details):
           cubit.cmd('group "tally:'+tally+'" add volume ' +' '.join(entry['volumes']))
 
 
-with open('model_description.json') as f:
+# aprepro_vars = cubit.get_aprepro_vars()
+
+# print("Found the following aprepro variables:")
+# print(aprepro_vars)
+# for var_name in aprepro_vars:
+#   val = cubit.get_aprepro_value_as_string(var_name)
+#   print("{0} = {1}".format(var_name, val))
+
+
+# if "model_description" in aprepro_vars:
+#     model_description = str(cubit.get_aprepro_value_as_string("model_description"))
+# elif "md" in aprepro_vars:
+#     model_description = str(cubit.get_aprepro_value_as_string("ofs"))
+# else:
+#     model_description = "model_description.json"
+
+# print('model_description',model_description)
+
+with open('filename_details.json') as f:
+    filename_details = byteify(json.load(f))
+
+output_filename_stub = filename_details['faceted_filename_stub']
+model_description = filename_details['model_description']
+
+with open(model_description) as f:
     geometry_details = byteify(json.load(f))
 
 geometry_details = find_number_of_volumes_in_each_step_file(geometry_details)
@@ -165,17 +192,17 @@ updated_wedge_surface_info_dict,wedge_volume = find_reflecting_surfaces_of_refle
 
 cubit.cmd('set attribute on')
 
-cubit.cmd('export dagmc "geometry_with_tags.h5m" faceting_tolerance 1.0e-2') # change to 1.0e-4 for accurate simulations
+cubit.cmd('export dagmc "'+output_filename_stub+'.h5m" faceting_tolerance 1.0e-2') # change to 1.0e-4 for accurate simulations
 
-#os.system('mbconvert geometry_with_material_and_tally_tags.h5m geometry_with_material_and_tally_tags.stl')
-# now peformed by run_all.sh
+os.system('mbconvert '+output_filename_stub+'.h5m '+output_filename_stub+'.stl')
 
-cubit.cmd('save as "geometry_with_tags.cub" overwrite')
+
+cubit.cmd('save as "'+output_filename_stub+'.cub" overwrite')
 
 #cubit.cmd('delete Group "mat:Graveyard"')
 #cubit.cmd('delete Group "mat:Vacuum"')
 cubit.cmd('delete volume '+wedge_volume)
 cubit.cmd('delete volume '+graveyard_vol)
-cubit.cmd('save as "geometry_with_tags_without_extra_vols.trelis" overwrite')
+cubit.cmd('save as "'+output_filename_stub+'.trelis" overwrite')
 with open('geometry_details.json', 'w') as outfile:
     json.dump(geometry_details, outfile, indent =4)

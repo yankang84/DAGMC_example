@@ -2,8 +2,15 @@
 import os
 import json
 
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-of', '--output_filename', type=str, default='dagmc_demo.inp')
+parser.add_argument('-nps', type=str, default='1e4')
+args = parser.parse_args()
 
 
+# print('creating '+str(args.output_filename))
 
 with open('geometry_details.json') as f:
     geometry_details = json.load(f)
@@ -25,9 +32,10 @@ header = ['c This dag-mcnp6 file was made used DAGMC_example',
 physics_card = ['sdef x=600 y=0 z=0 erg=14.1',
                 'print',
                 'mode n p',
-                'nps 1e7',
+                'nps '+args.nps,
                 'cut:n    j 1e-11  0.2  0.1  j',
                 'cut:p 1e+7 1e-3  -0.5 -0.25 j',
+                'PRDMP 0 0 1 ',
                 'c',
                 ]
 
@@ -119,7 +127,8 @@ mesh_tritium_production =['c tritium production on mesh',
 #all_parts = [header,physics_card,mesh_spectra,mesh_flux,mesh_neutron_heating,mesh_photon_heating,mesh_tritium_production]
 all_parts = [header,physics_card,mesh_spectra,mesh_tritium_production]
 
-f = open("dagmc_demo.inp", "w")
+print('creating '+str(args.output_filename))
+f = open(args.output_filename, "w")
 for entry in all_parts:
     number_of_tallies=number_of_tallies+1   
     for line in entry:
@@ -132,7 +141,7 @@ for entry in all_parts:
             f.write(line+'\n')
 f.close()
 
-print('file written dagmc_demo.inp')
+print('file written '+args.output_filename)
 
 #original file
 #this is jons demo dag-mcnp6 file

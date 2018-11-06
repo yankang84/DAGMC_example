@@ -35,6 +35,15 @@ def split_multimaterial_into_materials(multimat):
         return materials
 
 
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-of', '--output_filename', type=str, default='materials.h5')
+args = parser.parse_args()
+output_filename = args.output_filename
+
+
+
 mcnp_lib_nbi_2017 = mats_from_inp("mcnp_models/DEMO_NBI_.i")
 mcnp_lib = mats_from_inp("mcnp_models/demo.inp")
 mcnp_lib_generic = mats_from_inp("mcnp_models/2017_Generic_DEMO_MCNP_22_5deg_v1_1.txt")
@@ -94,7 +103,7 @@ my_material_library['steel_vol_45_copper_vol_40_alumina_vol_10_water_vol_5'] = m
 # nbi other parts m71 m72 m74 m75 m76 m77 m78
 
 try:
-    os.system('rm materials.h5')
+    os.system('rm '+output_filename)
 except:
     pass
 
@@ -115,8 +124,8 @@ for m in my_material_library:
     my_material_library[m] = mat
 
 
-my_material_library.write_hdf5("materials.h5")
-print('Finished creating Pyne materials, materials saved as "materials.h5"')
+my_material_library.write_hdf5(output_filename)
+print('Finished creating Pyne materials, materials saved as "'+output_filename+'"')
 
 
 #for key, value in my_material_library['homogenised_blanket'].metadata['table_ids']:

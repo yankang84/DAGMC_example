@@ -7,6 +7,7 @@ mode n p
 nps 1e7
 cut:n    j 1e-11  0.2  0.1  j
 cut:p 1e+7 1e-3  -0.5 -0.25 j
+PRDMP 0 0 1 
 c
 c neutron spectra on mesh
 fmesh734:n geom=dag

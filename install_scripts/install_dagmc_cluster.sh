@@ -29,8 +29,10 @@ export LD_LIBRARY_PATH=/home/jshim/dagmc_bld/HDF5/lib/:$LD_LIBRARY_PATH
 
 export PATH=$PATH:/home/jshim/dagmc_bld/MOAB/bin
 
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/jshim/dagmc_bld/MOAB/lib
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/jshim/dagmc_bld/HDF5/lib
+# export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/jshim/dagmc_bld/MOAB/lib
+# export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/jshim/dagmc_bld/HDF5/lib
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/mcnp/DAGMCV3/moab/lib64:
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/mcnp/mcnpexecs/dag-mcnp611/lib/
 
 #export DATAPATH=$HOME/xdata this is for local installation
 export DATAPATH=/home/mcnp/xs
@@ -157,7 +159,8 @@ make install
 
 cd ..
 cd lib
-export LD_LIBRARY_PATH=/home/mcnp/DAGMCV3/moab/lib64:/home/mcnp/mcnpexecs/dag-mcnp611/lib/:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/mcnp/DAGMCV3/moab/lib64:
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/mcnp/mcnpexecs/dag-mcnp611/lib/
 
 cd ../test
 for i in `ls test_*` ; do ./$i ; done
@@ -187,3 +190,10 @@ rm $HOME/visit2_13_2.linux-x86_64-ubuntu14.tar.gz
 
 rm $HOME/dagmc_bld/HDF5/hdf5-1.8.13.tar.gz
 
+#udocker
+mkdir udocker_install
+cd udocker_install
+curl https://raw.githubusercontent.com/indigo-dc/udocker/master/udocker.py > udocker
+chmod u+rx ./udocker
+./udocker install
+#run with ./udocker
