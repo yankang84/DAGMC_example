@@ -6,8 +6,8 @@ post_zip_filename="geometry_with_tags_zip.h5m"
 mcnp_filename="dagmc_demo.inp"
 mesh_filename_stub="tetmesh"
 materials_filename="materials.h5m"
-#model_description="model_description.json"
-model_description="model_description_full.json"
+model_description="model_description.json"
+#model_description="model_description_full.json"
 
 #tidies up the directory
 rm *.jou

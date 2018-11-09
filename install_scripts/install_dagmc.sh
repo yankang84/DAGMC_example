@@ -94,13 +94,14 @@ cd $HOME/dagmc_bld/DAGMC
 git clone git@github.com:Shimwell/DAGMC.git
 # the shimwell fork has a small change that is needed to avoid this issue https://github.com/svalinn/DAGMC/issues/562
 
+cd $HOME/dagmc_bld/DAGMC/
 cd $HOME/dagmc_bld/DAGMC/DAGMC
 
 git checkout develop
 
-cd src/mcnp/mcnp6
+cd $HOME/dagmc_bld/DAGMC/src/mcnp/mcnp6
 
-#copy the source folder from mcnp6 dvd
+#copy the Source folder from mcnp6 dvd
 cp -r $HOME/MCNP6/Source .
 
 # documentation refers to patch -p0 < patch/dagmc.6.1.1beta.patch which is not in the patch folder
@@ -109,7 +110,9 @@ patch -p0 < patch/mcnp611.patch
 cd $HOME/dagmc_bld/DAGMC
 
 mkdir $HOME/dagmc_bld/DAGMC/DAGMC/bld
+mkdir $HOME/dagmc_bld/DAGMC/bld
 
+cd $HOME/dagmc_bld/DAGMC/bld
 cd $HOME/dagmc_bld/DAGMC/DAGMC/bld
 
 rm -rf *

@@ -1,0 +1,32 @@
+[
+    {
+        "filename":"CAD_segmented_by_material/Accelerator_m76.sat",
+        "material":"???",
+        "color":"red"
+    },
+    {
+        "filename":"CAD_segmented_by_material/bellows_outer.sat",
+        "material":"???",
+        "color":"red"
+    },
+    {
+        "filename":"CAD_segmented_by_material/dump_plate_m75.sat",
+        "material":"???",
+        "color":"red"
+    },
+    {
+        "filename":"CAD_segmented_by_material/NEG pump_m72.sat",
+        "material":"???",
+        "color":"red"
+    },    
+    {
+        "filename":"CAD_segmented_by_material/port_gate.sat",
+        "material":"???",
+        "color":"red"
+    },
+    {
+        "filename":"CAD_segmented_by_material/RF_ion_source_case_m77.sat",
+        "material":"???",
+        "color":"red"
+    }              
+]

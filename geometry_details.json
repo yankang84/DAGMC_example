@@ -1,6 +1,9 @@
 [
     {
         "color": "red", 
+        "tallies": [
+            "Neutron/TBR"
+        ], 
         "material": "homogenised_blanket", 
         "volumes": [
             "1", 
@@ -18,6 +21,10 @@
     }, 
     {
         "color": "blue", 
+        "tallies": [
+            "Neutron/HEAT", 
+            "Photon/HEAT"
+        ], 
         "material": "homogenised_magnet", 
         "volumes": [
             "11"
@@ -25,174 +32,63 @@
         "filename": "CAD_segmented_by_material/central_sol.sat"
     }, 
     {
-        "color": "red", 
-        "material": "tungsten_reduced_density", 
-        "mesh_size": 0.5, 
-        "volumes": [
-            "12", 
-            "13", 
-            "14", 
-            "15", 
-            "16", 
-            "17"
-        ], 
-        "filename": "CAD_segmented_by_material/divertor_third_layer.sat"
-    }, 
-    {
-        "color": "red", 
-        "material": "tungsten", 
-        "volumes": [
-            "18", 
-            "19", 
-            "20", 
-            "21", 
-            "22", 
-            "23"
-        ], 
-        "filename": "CAD_segmented_by_material/divertor_first_layer.sat"
-    }, 
-    {
-        "color": "blue", 
-        "material": "tungsten_water_cucrzr_cu", 
-        "volumes": [
-            "24", 
-            "25", 
-            "26", 
-            "27", 
-            "28", 
-            "29"
-        ], 
-        "filename": "CAD_segmented_by_material/divertor_second_layer.sat"
-    }, 
-    {
         "color": "yellow", 
-        "material": "steel_vol_54_water_vol_46", 
-        "volumes": [
-            "30", 
-            "31", 
-            "32", 
-            "33", 
-            "34", 
-            "35"
-        ], 
-        "filename": "CAD_segmented_by_material/divertor_last_layer.sat"
-    }, 
-    {
-        "color": "grey", 
-        "material": "homogenised_magnet", 
-        "volumes": [
-            "36", 
-            "38", 
-            "39", 
-            "40", 
-            "41", 
-            "42"
-        ], 
-        "filename": "CAD_segmented_by_material/magnets_poloidal.sat"
-    }, 
-    {
-        "color": "blue", 
-        "material": "homogenised_magnet", 
-        "volumes": [
-            "47", 
-            "48", 
-            "49"
-        ], 
-        "filename": "CAD_segmented_by_material/magnets_toroidal.sat"
-    }, 
-    {
-        "color": "pink", 
-        "material": "SS-316L(N)-IG", 
-        "volumes": [
-            "50"
-        ], 
-        "filename": "CAD_segmented_by_material/magnets_toroidal_casing.sat"
-    }, 
-    {
-        "color": "hotpink", 
+        "surface_reflectivity": {
+            "107": {
+                "reflector": true
+            }, 
+            "386": {
+                "reflector": false
+            }, 
+            "387": {
+                "reflector": false
+            }, 
+            "420": {
+                "reflector": true
+            }, 
+            "391": {
+                "reflector": true
+            }, 
+            "393": {
+                "reflector": true
+            }, 
+            "235": {
+                "reflector": true
+            }, 
+            "108": {
+                "reflector": true
+            }, 
+            "269": {
+                "reflector": true
+            }, 
+            "419": {
+                "reflector": true
+            }, 
+            "388": {
+                "reflector": false
+            }, 
+            "380": {
+                "reflector": true
+            }, 
+            "383": {
+                "reflector": true
+            }
+        }, 
         "material": "Vacuum", 
         "volumes": [
-            "51"
+            "12"
         ], 
-        "filename": "CAD_segmented_by_material/plasma.sat"
-    }, 
-    {
-        "color": "tan", 
-        "material": "steel_vol_60_water_vol_40", 
-        "volumes": [
-            "52", 
-            "53"
-        ], 
-        "filename": "CAD_segmented_by_material/port_plugs.sat"
-    }, 
-    {
-        "color": "palegreen", 
-        "material": "SS316_vol_60_and_H2O_vol_40", 
-        "volumes": [
-            "54"
-        ], 
-        "filename": "CAD_segmented_by_material/vacuum_vessel_middle.sat"
-    }, 
-    {
-        "color": "green", 
-        "material": "SS-316L(N)-IG", 
-        "volumes": [
-            "55", 
-            "56"
-        ], 
-        "filename": "CAD_segmented_by_material/vacuum_vessel_outer_layer.sat"
+        "filename": "CAD_segmented_by_material/reflecting_wedge.stp"
     }, 
     {
         "color": "yellow", 
+        "tallies": [
+            "Neutron/DPA"
+        ], 
         "material": "SS-316L(N)-IG", 
         "volumes": [
-            "59"
+            "13"
         ], 
         "filename": "CAD_segmented_by_material/cryostat.sat"
-    }, 
-    {
-        "color": "tan", 
-        "material": "concrete_with_rebar", 
-        "volumes": [
-            "60"
-        ], 
-        "filename": "CAD_segmented_by_material/bioshield.sat"
-    }, 
-    {
-        "color": "blue", 
-        "material": "SS-316L(N)-IG", 
-        "volumes": [
-            "61", 
-            "62"
-        ], 
-        "filename": "CAD_segmented_by_material/port_outer.sat"
-    }, 
-    {
-        "color": "green", 
-        "material": "SS-316L(N)-IG", 
-        "volumes": [
-            "63", 
-            "64", 
-            "65", 
-            "66", 
-            "67", 
-            "68", 
-            "69"
-        ], 
-        "filename": "CAD_segmented_by_material/port_middle_layer.sat"
-    }, 
-    {
-        "color": "red", 
-        "material": "SS-316L(N)-IG", 
-        "volumes": [
-            "70", 
-            "71", 
-            "72", 
-            "73", 
-            "74", 
-            "75", 
-            "76"
-        ], 
-        "filename": "CAD_segmented_by_material/port_inner.sat"
     }
 ]
