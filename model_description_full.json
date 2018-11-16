@@ -1,11 +1,5 @@
 [
     {
-        "filename":"CAD_segmented_by_material/plasma.sat",
-        "material":"Vacuum",
-        "color":"hotpink",
-        "mesh":"false"
-    },
-    {
         "filename":"CAD_segmented_by_material/blankets.sat",
         "material":"homogenised_blanket",
         "color":"red"
@@ -30,6 +24,13 @@
         "filename":"CAD_segmented_by_material/divertor_second_layer.sat",
         "material":"tungsten_water_cucrzr_cu",
         "color":"blue"
+    },
+    {
+        "filename":"CAD_segmented_by_material/plasma.sat",
+        "material":"Vacuum",
+        "color":"hotpink",
+        "mesh":"false",
+        "source":"true"
     },
     {
         "filename":"CAD_segmented_by_material/divertor_last_layer.sat",

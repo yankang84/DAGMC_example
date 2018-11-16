@@ -7,6 +7,7 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('-of', '--output_filename', type=str, default='dagmc_demo.inp')
 parser.add_argument('-nps', type=str, default='1e4')
+parser.add_argument('-scs', '--source_cut_cell', type=str, default='1')
 args = parser.parse_args()
 
 
@@ -16,9 +17,12 @@ with open('geometry_details.json') as f:
     geometry_details = json.load(f)
 
 for entry in geometry_details:
-    if 'tally' in entry.keys():
-        print(entry)
-
+    if 'source' in entry.keys():
+        if entry['source'].lower() =='true':
+          if len(entry['volumes'])==1:
+            source_cut_cell = str(entry['volumes'][0])
+          else:
+            raise ValueError('only one cell can be used to cut the source')
 
 number_of_tallies = 70
 
@@ -38,7 +42,7 @@ physics_card = ['C **** CYLINDRICAL GEOMETRY ****',
                 'C',
                 'c    "WGT" is changed from 10-deg to 40-deg',
                 'c',
-                'SDEF ERG=D1 WGT=0.11111 EFF=1e-4 CEL=1  &',
+                'SDEF ERG=D1 WGT=0.11111 EFF=1e-4 CEL='+source_cut_cell+'  &',
                 'POS=0 0 -465.8700 AXS=0 0 1 RAD D2 EXT FRAD D3',
                 'C',
                 'C **** NEUTRON ENERGY DISTRIBUTION ****',

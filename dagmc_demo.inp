@@ -5,7 +5,7 @@ C **** CYLINDRICAL GEOMETRY ****
 C
 c    "WGT" is changed from 10-deg to 40-deg
 c
-SDEF ERG=D1 WGT=0.11111 EFF=1e-4 CEL=1  &
+SDEF ERG=D1 WGT=0.11111 EFF=1e-4 CEL=30  &
 POS=0 0 -465.8700 AXS=0 0 1 RAD D2 EXT FRAD D3
 C
 C **** NEUTRON ENERGY DISTRIBUTION ****
@@ -785,7 +785,7 @@ SP540 D 0
 c
 print
 mode n p
-nps 1e7
+nps 1e4
 cut:n    j 1e-11  0.2  0.1  j
 cut:p 1e+7 1e-3  -0.5 -0.25 j
 c

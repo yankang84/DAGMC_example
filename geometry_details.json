@@ -1,17 +1,9 @@
 [
     {
-        "color": "hotpink", 
-        "material": "Vacuum", 
-        "volumes": [
-            "1"
-        ], 
-        "mesh": "false", 
-        "filename": "CAD_segmented_by_material/plasma.sat"
-    }, 
-    {
         "color": "red", 
         "material": "homogenised_blanket", 
         "volumes": [
+            "1", 
             "2", 
             "3", 
             "4", 
@@ -20,8 +12,7 @@
             "7", 
             "8", 
             "9", 
-            "10", 
-            "11"
+            "10"
         ], 
         "filename": "CAD_segmented_by_material/blankets.sat"
     }, 
@@ -29,7 +20,7 @@
         "color": "blue", 
         "material": "homogenised_magnet", 
         "volumes": [
-            "12"
+            "11"
         ], 
         "filename": "CAD_segmented_by_material/central_sol.sat"
     }, 
@@ -37,12 +28,12 @@
         "color": "red", 
         "material": "tungsten_reduced_density", 
         "volumes": [
+            "12", 
             "13", 
             "14", 
             "15", 
             "16", 
-            "17", 
-            "18"
+            "17"
         ], 
         "mesh": " size 0.5", 
         "filename": "CAD_segmented_by_material/divertor_third_layer.sat"
@@ -51,12 +42,12 @@
         "color": "red", 
         "material": "tungsten", 
         "volumes": [
+            "18", 
             "19", 
             "20", 
             "21", 
             "22", 
-            "23", 
-            "24"
+            "23"
         ], 
         "filename": "CAD_segmented_by_material/divertor_first_layer.sat"
     }, 
@@ -64,14 +55,24 @@
         "color": "blue", 
         "material": "tungsten_water_cucrzr_cu", 
         "volumes": [
+            "24", 
             "25", 
             "26", 
             "27", 
             "28", 
-            "29", 
-            "30"
+            "29"
         ], 
         "filename": "CAD_segmented_by_material/divertor_second_layer.sat"
+    }, 
+    {
+        "color": "hotpink", 
+        "material": "Vacuum", 
+        "filename": "CAD_segmented_by_material/plasma.sat", 
+        "source": "true", 
+        "mesh": "false", 
+        "volumes": [
+            "30"
+        ]
     }, 
     {
         "color": "yellow", 
@@ -214,16 +215,13 @@
             "1922": {
                 "reflector": true
             }, 
-            "390": {
+            "235": {
                 "reflector": true
             }, 
             "1927": {
                 "reflector": true
             }, 
             "1929": {
-                "reflector": true
-            }, 
-            "279": {
                 "reflector": true
             }, 
             "908": {
@@ -236,6 +234,12 @@
                 "reflector": true
             }, 
             "1042": {
+                "reflector": true
+            }, 
+            "107": {
+                "reflector": true
+            }, 
+            "269": {
                 "reflector": true
             }, 
             "1303": {
@@ -253,7 +257,7 @@
             "1057": {
                 "reflector": true
             }, 
-            "1": {
+            "710": {
                 "reflector": true
             }, 
             "808": {
@@ -265,25 +269,19 @@
             "820": {
                 "reflector": true
             }, 
-            "393": {
-                "reflector": true
-            }, 
             "826": {
                 "reflector": true
             }, 
             "863": {
                 "reflector": true
             }, 
-            "117": {
-                "reflector": true
-            }, 
             "832": {
                 "reflector": true
             }, 
-            "2": {
+            "838": {
                 "reflector": true
             }, 
-            "838": {
+            "711": {
                 "reflector": true
             }, 
             "844": {
@@ -313,6 +311,9 @@
             "875": {
                 "reflector": true
             }, 
+            "108": {
+                "reflector": true
+            }, 
             "1776": {
                 "reflector": false
             }, 
@@ -322,16 +323,16 @@
             "1778": {
                 "reflector": false
             }, 
-            "245": {
-                "reflector": true
-            }, 
-            "118": {
-                "reflector": true
-            }, 
             "889": {
                 "reflector": true
             }, 
+            "380": {
+                "reflector": true
+            }, 
             "1149": {
+                "reflector": true
+            }, 
+            "383": {
                 "reflector": true
             }
         }
