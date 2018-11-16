@@ -192,9 +192,7 @@ updated_wedge_surface_info_dict,wedge_volume = find_reflecting_surfaces_of_refle
 
 cubit.cmd('set attribute on')
 
-cubit.cmd('export dagmc "'+output_filename_stub+'.h5m" faceting_tolerance 1.0e-2') # change to 1.0e-4 for accurate simulations
-
-os.system('mbconvert '+output_filename_stub+'.h5m '+output_filename_stub+'.stl')
+cubit.cmd('export dagmc "'+output_filename_stub+'.h5m" faceting_tolerance 1.0e-2') # use 1.0e-4 for accurate simulations
 
 
 cubit.cmd('save as "'+output_filename_stub+'.cub" overwrite')
@@ -204,5 +202,11 @@ cubit.cmd('save as "'+output_filename_stub+'.cub" overwrite')
 cubit.cmd('delete volume '+wedge_volume)
 cubit.cmd('delete volume '+graveyard_vol)
 cubit.cmd('save as "'+output_filename_stub+'.trelis" overwrite')
+
+os.system('mbconvert '+output_filename_stub+'_visulisation.h5m '+output_filename_stub+'.stl')
+os.system('mbconvert -1 '+output_filename_stub+'.h5m '+output_filename_stub+'_edges.h5m')
+
 with open('geometry_details.json', 'w') as outfile:
     json.dump(geometry_details, outfile, indent =4)
+
+

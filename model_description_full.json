@@ -1,5 +1,11 @@
 [
     {
+        "filename":"CAD_segmented_by_material/plasma.sat",
+        "material":"Vacuum",
+        "color":"hotpink",
+        "mesh":"false"
+    },
+    {
         "filename":"CAD_segmented_by_material/blankets.sat",
         "material":"homogenised_blanket",
         "color":"red"
@@ -13,7 +19,7 @@
         "filename":"CAD_segmented_by_material/divertor_third_layer.sat",
         "material":"tungsten_reduced_density",
         "color":"red",
-        "mesh_size":0.5
+        "mesh":" size 0.5"
     },
     {
         "filename":"CAD_segmented_by_material/divertor_first_layer.sat",
@@ -44,11 +50,6 @@
         "filename":"CAD_segmented_by_material/magnets_toroidal_casing.sat",
         "material":"SS-316L(N)-IG",
         "color":"pink"
-    },
-    {
-        "filename":"CAD_segmented_by_material/plasma.sat",
-        "material":"Vacuum",
-        "color":"hotpink"
     },
     {
         "filename":"CAD_segmented_by_material/port_plugs.sat",
@@ -89,5 +90,12 @@
         "filename":"CAD_segmented_by_material/port_inner.sat",
         "material":"SS-316L(N)-IG",
         "color":"red"
-    }
+    },
+    {
+        "filename":"CAD_segmented_by_material/reflecting_wedge.stp",
+        "material":"Vacuum",
+        "color":"yellow",
+        "surface_reflectivity":true,
+        "mesh":"false"
+    }     
 ]

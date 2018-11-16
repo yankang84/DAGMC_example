@@ -57,7 +57,7 @@ my_material_library['homogenised_magnet'] = mcnp_lib_generic[25].expand_elements
 
 
 my_material_library['SS-316L(N)-IG'] = mcnp_lib_generic[50].expand_elements()
-# my_material_library['SS-316L(N)-IG'].metadata='SS-316L(N)-IG used in the magnet casing and vacuum vessel skin and cyrostat'
+# my_material_library['SS-316L(N)-IG'].metadata='SS-316L(N)-IG used in the magnet casing and vacuum vessel skin, cyrostat and NBI vessel'
 
 
 
@@ -93,13 +93,14 @@ mcnp_lib_nbi_2017[160].density = 5.15800
 my_material_library['steel_vol_60_water_vol_40'] = mcnp_lib_nbi_2017[160].expand_elements()
 # my_material_library['steel_vol_60_water_vol_40'].metadata='used in lower port plug SS316L(N) - 60%, water (31 bar, 200 C) - 40%'
 
-my_material_library['steel_vol_45_copper_vol_40_alumina_vol_10_water_vol_5'] = mcnp_lib_nbi_2017[77].expand_elements()
-# my_material_library['steel_vol_60_water_vol_40'].metadata='used in the ion source case 45% SS 316 40% Cu 10% Alumina 5% Water'
+my_material_library['steel_vol_55_with_cu_alumina_H2O'] = mcnp_lib_nbi_2017[77].expand_elements()
+# my_material_library['steel_vol_55_with_cu_alumina_H2O'].metadata='used in the ion source case 45% SS 316 40% Cu 10% Alumina 5% Water'
 
-my_material_library['steel_vol_45_copper_vol_40_alumina_vol_10_water_vol_5'] = mcnp_lib_nbi_2017[73].expand_elements()
-# my_material_library['steel_vol_60_water_vol_40'].metadata='used in the ion source case 45% SS 316 40% Cu 10% Alumina 5% Water'
+my_material_library['steel_vol_45_with_cu_alumina_H2O'] = mcnp_lib_nbi_2017[73].expand_elements()
+# my_material_library['steel_vol_45_with_cu_alumina_H2O'].metadata='used in accelerator'
 
-# nbi body m73
+
+# nbi body m73 should be the same materia as m50 (both SS316 LN)
 # nbi other parts m71 m72 m74 m75 m76 m77 m78
 
 try:

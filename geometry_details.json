@@ -1,12 +1,17 @@
 [
     {
-        "color": "red", 
-        "tallies": [
-            "Neutron/TBR"
+        "color": "hotpink", 
+        "material": "Vacuum", 
+        "volumes": [
+            "1"
         ], 
+        "mesh": "false", 
+        "filename": "CAD_segmented_by_material/plasma.sat"
+    }, 
+    {
+        "color": "red", 
         "material": "homogenised_blanket", 
         "volumes": [
-            "1", 
             "2", 
             "3", 
             "4", 
@@ -15,80 +20,320 @@
             "7", 
             "8", 
             "9", 
-            "10"
+            "10", 
+            "11"
         ], 
         "filename": "CAD_segmented_by_material/blankets.sat"
     }, 
     {
         "color": "blue", 
-        "tallies": [
-            "Neutron/HEAT", 
-            "Photon/HEAT"
-        ], 
         "material": "homogenised_magnet", 
         "volumes": [
-            "11"
+            "12"
         ], 
         "filename": "CAD_segmented_by_material/central_sol.sat"
     }, 
     {
+        "color": "red", 
+        "material": "tungsten_reduced_density", 
+        "volumes": [
+            "13", 
+            "14", 
+            "15", 
+            "16", 
+            "17", 
+            "18"
+        ], 
+        "mesh": " size 0.5", 
+        "filename": "CAD_segmented_by_material/divertor_third_layer.sat"
+    }, 
+    {
+        "color": "red", 
+        "material": "tungsten", 
+        "volumes": [
+            "19", 
+            "20", 
+            "21", 
+            "22", 
+            "23", 
+            "24"
+        ], 
+        "filename": "CAD_segmented_by_material/divertor_first_layer.sat"
+    }, 
+    {
+        "color": "blue", 
+        "material": "tungsten_water_cucrzr_cu", 
+        "volumes": [
+            "25", 
+            "26", 
+            "27", 
+            "28", 
+            "29", 
+            "30"
+        ], 
+        "filename": "CAD_segmented_by_material/divertor_second_layer.sat"
+    }, 
+    {
         "color": "yellow", 
+        "material": "steel_vol_54_water_vol_46", 
+        "volumes": [
+            "31", 
+            "32", 
+            "33", 
+            "34", 
+            "35", 
+            "36"
+        ], 
+        "filename": "CAD_segmented_by_material/divertor_last_layer.sat"
+    }, 
+    {
+        "color": "grey", 
+        "material": "homogenised_magnet", 
+        "volumes": [
+            "37", 
+            "39", 
+            "40", 
+            "41", 
+            "42", 
+            "43"
+        ], 
+        "filename": "CAD_segmented_by_material/magnets_poloidal.sat"
+    }, 
+    {
+        "color": "blue", 
+        "material": "homogenised_magnet", 
+        "volumes": [
+            "48", 
+            "49", 
+            "50"
+        ], 
+        "filename": "CAD_segmented_by_material/magnets_toroidal.sat"
+    }, 
+    {
+        "color": "pink", 
+        "material": "SS-316L(N)-IG", 
+        "volumes": [
+            "51"
+        ], 
+        "filename": "CAD_segmented_by_material/magnets_toroidal_casing.sat"
+    }, 
+    {
+        "color": "tan", 
+        "material": "steel_vol_60_water_vol_40", 
+        "volumes": [
+            "52", 
+            "53"
+        ], 
+        "filename": "CAD_segmented_by_material/port_plugs.sat"
+    }, 
+    {
+        "color": "palegreen", 
+        "material": "SS316_vol_60_and_H2O_vol_40", 
+        "volumes": [
+            "54"
+        ], 
+        "filename": "CAD_segmented_by_material/vacuum_vessel_middle.sat"
+    }, 
+    {
+        "color": "green", 
+        "material": "SS-316L(N)-IG", 
+        "volumes": [
+            "55", 
+            "56"
+        ], 
+        "filename": "CAD_segmented_by_material/vacuum_vessel_outer_layer.sat"
+    }, 
+    {
+        "color": "yellow", 
+        "material": "SS-316L(N)-IG", 
+        "volumes": [
+            "59"
+        ], 
+        "filename": "CAD_segmented_by_material/cryostat.sat"
+    }, 
+    {
+        "color": "tan", 
+        "material": "concrete_with_rebar", 
+        "volumes": [
+            "60"
+        ], 
+        "filename": "CAD_segmented_by_material/bioshield.sat"
+    }, 
+    {
+        "color": "blue", 
+        "material": "SS-316L(N)-IG", 
+        "volumes": [
+            "61", 
+            "62"
+        ], 
+        "filename": "CAD_segmented_by_material/port_outer.sat"
+    }, 
+    {
+        "color": "green", 
+        "material": "SS-316L(N)-IG", 
+        "volumes": [
+            "63", 
+            "64", 
+            "65", 
+            "66", 
+            "67", 
+            "68", 
+            "69"
+        ], 
+        "filename": "CAD_segmented_by_material/port_middle_layer.sat"
+    }, 
+    {
+        "color": "red", 
+        "material": "SS-316L(N)-IG", 
+        "volumes": [
+            "70", 
+            "71", 
+            "72", 
+            "73", 
+            "74", 
+            "75", 
+            "76"
+        ], 
+        "filename": "CAD_segmented_by_material/port_inner.sat"
+    }, 
+    {
+        "color": "yellow", 
+        "material": "Vacuum", 
+        "filename": "CAD_segmented_by_material/reflecting_wedge.stp", 
+        "mesh": "false", 
+        "volumes": [
+            "77"
+        ], 
         "surface_reflectivity": {
-            "107": {
+            "1920": {
                 "reflector": true
             }, 
-            "386": {
-                "reflector": false
-            }, 
-            "387": {
-                "reflector": false
-            }, 
-            "420": {
+            "896": {
                 "reflector": true
             }, 
-            "391": {
+            "1922": {
+                "reflector": true
+            }, 
+            "390": {
+                "reflector": true
+            }, 
+            "1927": {
+                "reflector": true
+            }, 
+            "1929": {
+                "reflector": true
+            }, 
+            "279": {
+                "reflector": true
+            }, 
+            "908": {
+                "reflector": true
+            }, 
+            "909": {
+                "reflector": true
+            }, 
+            "1295": {
+                "reflector": true
+            }, 
+            "1042": {
+                "reflector": true
+            }, 
+            "1303": {
+                "reflector": true
+            }, 
+            "1434": {
+                "reflector": true
+            }, 
+            "1950": {
+                "reflector": true
+            }, 
+            "1951": {
+                "reflector": true
+            }, 
+            "1057": {
+                "reflector": true
+            }, 
+            "1": {
+                "reflector": true
+            }, 
+            "808": {
+                "reflector": true
+            }, 
+            "815": {
+                "reflector": true
+            }, 
+            "820": {
                 "reflector": true
             }, 
             "393": {
                 "reflector": true
             }, 
-            "235": {
+            "826": {
                 "reflector": true
             }, 
-            "108": {
+            "863": {
                 "reflector": true
             }, 
-            "269": {
+            "117": {
                 "reflector": true
             }, 
-            "419": {
+            "832": {
                 "reflector": true
             }, 
-            "388": {
+            "2": {
+                "reflector": true
+            }, 
+            "838": {
+                "reflector": true
+            }, 
+            "844": {
+                "reflector": true
+            }, 
+            "1293": {
+                "reflector": true
+            }, 
+            "977": {
+                "reflector": true
+            }, 
+            "851": {
+                "reflector": true
+            }, 
+            "857": {
+                "reflector": true
+            }, 
+            "1118": {
+                "reflector": true
+            }, 
+            "869": {
+                "reflector": true
+            }, 
+            "997": {
+                "reflector": true
+            }, 
+            "875": {
+                "reflector": true
+            }, 
+            "1776": {
                 "reflector": false
             }, 
-            "380": {
+            "1777": {
+                "reflector": false
+            }, 
+            "1778": {
+                "reflector": false
+            }, 
+            "245": {
                 "reflector": true
             }, 
-            "383": {
+            "118": {
+                "reflector": true
+            }, 
+            "889": {
+                "reflector": true
+            }, 
+            "1149": {
                 "reflector": true
             }
-        }, 
-        "material": "Vacuum", 
-        "volumes": [
-            "12"
-        ], 
-        "filename": "CAD_segmented_by_material/reflecting_wedge.stp"
-    }, 
-    {
-        "color": "yellow", 
-        "tallies": [
-            "Neutron/DPA"
-        ], 
-        "material": "SS-316L(N)-IG", 
-        "volumes": [
-            "13"
-        ], 
-        "filename": "CAD_segmented_by_material/cryostat.sat"
+        }
     }
 ]

@@ -32,8 +32,7 @@ def byteify(input):
         return input
 
 
-os.system('rm *.log')
-os.system('rm *.jou')
+
 
 cubit.cmd('reset')
 
@@ -72,9 +71,12 @@ for entry in geometry_details:
   for volume in entry['volumes']:
     cubit.cmd('volume '+str(volume)+' size auto factor 6')
     cubit.cmd('volume all scheme tetmesh proximity layers off geometric sizing on')
-    if 'mesh_size' in entry.keys():
-      cubit.cmd('volume '+str(volume)+' size 0.5')
-    cubit.cmd('mesh volume '+str(volume))
+    if 'mesh' in entry.keys():
+      if entry['mesh'].lower() != "false":
+        cubit.cmd('volume '+str(volume)+' '+entry['mesh']) #' size 0.5'
+        cubit.cmd('mesh volume '+str(volume))
+    else:
+        cubit.cmd('mesh volume '+str(volume))
 
 # for volume in current_vols:
 #   cubit.cmd('volume '+str(volume)+' size auto factor 4')

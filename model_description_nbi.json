@@ -28,5 +28,9 @@
         "filename":"CAD_segmented_by_material/RF_ion_source_case_m77.sat",
         "material":"???",
         "color":"red"
-    }              
+    },              
+    {
+        "filename":"CAD_segmented_by_material/NBI_vessel.sat",
+        "material":"SS-316L(N)-IG",
+    }
 ]

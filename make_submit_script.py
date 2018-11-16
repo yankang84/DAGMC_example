@@ -7,7 +7,7 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('-of', '--output_filename', type=str, default='submit_script_cumulus.sh')
 parser.add_argument('-nodes', type=str, default='4')
-parser.add_argument('-ppn', type=str, default='32')
+parser.add_argument('-ppn', type=str, default='10')
 args = parser.parse_args()
 
 
@@ -33,6 +33,7 @@ submit_commands = ['############################################################
                    ''
                    'cd $PBS_O_WORKDIR',
                    '   #uses the CWD as the home for the job',
+                   'module unload ifort/12.0.1.107 openmpi/1.10.2',
                    'module load ifort/2017.0.098',
                    'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/mcnp/DAGMCV3/moab/lib64',
                    'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/mcnp/mcnpexecs/dag-mcnp611/lib/',

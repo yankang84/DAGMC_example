@@ -117,8 +117,10 @@ lcad
 *.stl
 *.step
 /trelis
+*.trelis
 out*
 runt*
 lcad_modified
 lcad_modified~
 /old*
+meshtal

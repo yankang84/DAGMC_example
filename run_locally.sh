@@ -6,8 +6,8 @@ post_zip_filename="geometry_with_tags_zip.h5m"
 mcnp_filename="dagmc_demo.inp"
 mesh_filename_stub="tetmesh"
 materials_filename="materials.h5m"
-model_description="model_description.json"
-#model_description="model_description_full.json"
+#model_description="model_description.json"
+model_description="model_description_full.json"
 
 #tidies up the directory
 rm *.jou
@@ -17,11 +17,14 @@ rm dump
 rm runtp*
 rm lcad
 rm fcad
+rm meshtal
 rm $faceted_filename_stub*
-rm post_zip_filename
-rm mcnp_filename
+rm $post_zip_filename
+rm $mcnp_filename
 rm $mesh_filename_stub*
-rm materials_filename
+rm $materials_filename
+rm tally_neutron_spectra.h5m
+rm tally_tbr.h5m
 
 python3 make_filenames_to_json.py --faceted_filename_stub=$faceted_filename_stub \
                                    --mesh_filename_stub=$mesh_filename_stub \
@@ -49,6 +52,8 @@ trelis -batch -nographics make_faceted_geometry_with_material_and_tally_tags.py
 #outputs:
 # geometry_with_tags.trelis for meshing later
 # geometry_with_tags.h5m for particle transport
+# geometry_with_tags_edges.h5m for visit visulisation slices
+# geometry_with_tags_edges.vtk for visit visulisation 
 # geometry_with_tags.stl for paraview or visit visulisation
 
 trelis -batch -nographics make_unstructured_mesh.py 
@@ -73,6 +78,7 @@ uwuw_preproc $post_zip_filename -l $materials_filename -s -v
 #fi
 
 python3 make_dagmcnp_input_file.py -nps=1e4 --output_filename=$mcnp_filename 
+
 
 mcnp6.mpi i=dagmc_demo.inp g=geometry_with_tags_zip.h5m xsdir='xsdir_mcnp_jeff33_fendl31d'
 
