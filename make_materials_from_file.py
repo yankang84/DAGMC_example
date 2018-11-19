@@ -94,10 +94,16 @@ my_material_library['steel_vol_60_water_vol_40'] = mcnp_lib_nbi_2017[160].expand
 # my_material_library['steel_vol_60_water_vol_40'].metadata='used in lower port plug SS316L(N) - 60%, water (31 bar, 200 C) - 40%'
 
 my_material_library['steel_vol_55_with_cu_alumina_H2O'] = mcnp_lib_nbi_2017[77].expand_elements()
-# my_material_library['steel_vol_55_with_cu_alumina_H2O'].metadata='used in the ion source case 45% SS 316 40% Cu 10% Alumina 5% Water'
+# my_material_library['steel_vol_55_with_cu_alumina_H2O'].metadata='used in the port gate , ion source case 45% SS 316 40% Cu 10% Alumina 5% Water'
 
 my_material_library['steel_vol_45_with_cu_alumina_H2O'] = mcnp_lib_nbi_2017[73].expand_elements()
 # my_material_library['steel_vol_45_with_cu_alumina_H2O'].metadata='used in accelerator'
+
+my_material_library['CuCrZR_vol_90_H2O_vol_10'] = mcnp_lib_nbi_2017[75].expand_elements()
+# my_material_library['CuCrZR_vol_90_H2O_vol_10'].metadata='used in dump plates'
+
+my_material_library['Zr_vol_70_V_24.6_Fe_vol_5.4'] = mcnp_lib_nbi_2017[72].expand_elements()
+# my_material_library['CuCrZR_vol_90_H2O_vol_10'].metadata='used in NEG pump'
 
 
 # nbi body m73 should be the same materia as m50 (both SS316 LN)

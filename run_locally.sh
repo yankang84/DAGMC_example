@@ -6,8 +6,9 @@ post_zip_filename="geometry_with_tags_zip.h5m"
 mcnp_filename="dagmc_demo.inp"
 mesh_filename_stub="tetmesh"
 materials_filename="materials.h5m"
-#model_description="model_description.json"
-model_description="model_description_full.json"
+# model_description="model_description.json"
+model_description="model_description_nbi.json"
+#model_description="model_description_full.json"
 
 #tidies up the directory
 rm *.jou
@@ -47,8 +48,8 @@ python make_solid_for_reflecting_surfaces.py --output_filename "CAD_segmented_by
 python3 make_materials_from_file.py --output_filename=$materials_filename
 #outputs materials.h5m for particle transport
 
-trelis -batch -nographics make_faceted_geometry_with_material_and_tally_tags.py 
-#trelis make_faceted_geometry_with_material_and_tally_tags.py
+#trelis -batch -nographics make_faceted_geometry_with_material_and_tally_tags.py 
+trelis make_faceted_geometry_with_material_and_tally_tags.py
 #outputs:
 # geometry_with_tags.trelis for meshing later
 # geometry_with_tags.h5m for particle transport

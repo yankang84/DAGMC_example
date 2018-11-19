@@ -133,18 +133,27 @@ def scale_geometry(geometry_details):
       cubit.cmd('volume ' +' '.join(entry['volumes'] + ' scale ' + str(entry['scale'])))
 
 def color_geometry(geometry_details):
+    assigned_colors = []
     for entry in geometry_details:
-       #cubit.cmd('group "'+os.path.split(entry['filename'])[-1]+'" add volume ' +' '.join(entry['volumes'])) # can be performed here or in the file loading
-       cubit.cmd('group "mat:'+entry['material']+'" add volume ' +' '.join(entry['volumes']))
        print(entry)
        if "color" in entry.keys():
         print('color in keys')
         # Available Colors https://www.csimsoft.com/help/appendix/available_colors.htm
         cubit.cmd('Color volume '+' '.join(entry['volumes'])+ ' '+ entry['color'])    
+       else:
+        cubit.cmd('Color volume '+' '.join(entry['volumes'])+ ' grey')
+
+def tag_geometry_with_mats_and_tallies(geometry_details):
+    for entry in geometry_details:
+       #cubit.cmd('group "'+os.path.split(entry['filename'])[-1]+'" add volume ' +' '.join(entry['volumes'])) # can be performed here or in the file loading
+       cubit.cmd('group "mat:'+entry['material']+'" add volume ' +' '.join(entry['volumes']))
+       print(entry)
        if "tallies" in entry.keys():
         for tally in entry['tallies']:
           print('adding tally group',tally)
           cubit.cmd('group "tally:'+tally+'" add volume ' +' '.join(entry['volumes']))
+
+
 
 
 # aprepro_vars = cubit.get_aprepro_vars()
@@ -171,8 +180,12 @@ with open('filename_details.json') as f:
 output_filename_stub = filename_details['faceted_filename_stub']
 model_description = filename_details['model_description']
 
+print('loading ',model_description)
 with open(model_description) as f:
     geometry_details = byteify(json.load(f))
+
+
+print('geometry_details = ',geometry_details)
 
 geometry_details = find_number_of_volumes_in_each_step_file(geometry_details)
 
@@ -181,6 +194,8 @@ scale_geometry(geometry_details)
 graveyard_vol = create_graveyard()
 
 color_geometry(geometry_details)
+
+tag_geometry_with_mats_and_tallies(geometry_details)
 
 cubit.cmd('imprint body all')
 #cubit.cmd('merge tolerance 1.e-4') #optional as there is a default

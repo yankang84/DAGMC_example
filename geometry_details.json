@@ -206,22 +206,22 @@
             "77"
         ], 
         "surface_reflectivity": {
-            "1920": {
+            "6400": {
                 "reflector": true
             }, 
             "896": {
                 "reflector": true
             }, 
-            "1922": {
+            "6402": {
                 "reflector": true
             }, 
             "235": {
                 "reflector": true
             }, 
-            "1927": {
+            "6407": {
                 "reflector": true
             }, 
-            "1929": {
+            "6409": {
                 "reflector": true
             }, 
             "908": {
@@ -248,10 +248,10 @@
             "1434": {
                 "reflector": true
             }, 
-            "1950": {
+            "6430": {
                 "reflector": true
             }, 
-            "1951": {
+            "6431": {
                 "reflector": true
             }, 
             "1057": {
@@ -336,5 +336,101 @@
                 "reflector": true
             }
         }
+    }, 
+    {
+        "color": "red", 
+        "material": "steel_vol_45_with_cu_alumina_H2O", 
+        "volumes": [
+            "78", 
+            "79", 
+            "81", 
+            "83", 
+            "84", 
+            "87", 
+            "88", 
+            "91", 
+            "92", 
+            "95", 
+            "96", 
+            "99", 
+            "100", 
+            "103", 
+            "104", 
+            "107", 
+            "108", 
+            "111", 
+            "112", 
+            "115"
+        ], 
+        "filename": "CAD_segmented_by_material/Accelerator_m76.sat"
+    }, 
+    {
+        "color": "orange", 
+        "material": "CuCrZR_vol_90_H2O_vol_10", 
+        "volumes": [
+            "118", 
+            "119"
+        ], 
+        "filename": "CAD_segmented_by_material/dump_plate_m75.sat"
+    }, 
+    {
+        "color": "green", 
+        "material": "Zr_vol_70_V_24.6_Fe_vol_5.4", 
+        "volumes": [
+            "120", 
+            "121", 
+            "122", 
+            "124"
+        ], 
+        "filename": "CAD_segmented_by_material/NEG_pump_m72.sat"
+    }, 
+    {
+        "color": "yellow", 
+        "material": "steel_vol_55_with_cu_alumina_H2O", 
+        "volumes": [
+            "126"
+        ], 
+        "filename": "CAD_segmented_by_material/port_gate.sat"
+    }, 
+    {
+        "color": "blue", 
+        "material": "steel_vol_55_with_cu_alumina_H2O", 
+        "volumes": [
+            "128"
+        ], 
+        "filename": "CAD_segmented_by_material/RF_ion_source_case_m77.sat"
+    }, 
+    {
+        "color": "red", 
+        "material": "SS-316L(N)-IG", 
+        "volumes": [
+            "129"
+        ], 
+        "filename": "CAD_segmented_by_material/bellows_outer.sat"
+    }, 
+    {
+        "color": "green", 
+        "material": "SS-316L(N)-IG", 
+        "volumes": [
+            "130"
+        ], 
+        "filename": "CAD_segmented_by_material/nbi_vessel_upper_top.sat"
+    }, 
+    {
+        "color": "green", 
+        "material": "SS-316L(N)-IG", 
+        "volumes": [
+            "131"
+        ], 
+        "filename": "CAD_segmented_by_material/nbi_vessel_lower_cylinder.sat"
+    }, 
+    {
+        "color": "green", 
+        "material": "SS-316L(N)-IG", 
+        "volumes": [
+            "308", 
+            "315"
+        ], 
+        "filename": "CAD_segmented_by_material/nbi_vessel_box.sat"
     }
 ]
