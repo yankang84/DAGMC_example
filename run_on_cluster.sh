@@ -7,7 +7,7 @@ mesh_filename_stub="tetmesh"
 submit_script="submit_script_cumulus.sh"
 
 python3 make_dagmcnp_input_file.py -nps=1e7 --output_filename=$mcnp_filename 
-python3 make_submit_script.py -nodes=4 -ppn=10 --output_filename=$submit_script
+python3 make_submit_script.py -nodes=4 -ppn=32 -ncpu=40 --output_filename=$submit_script
 #each mpi task needs 23Gb of RAM so we can't use all 32 cpus , each node has 512GB of RAM available
 
 #copy files to cluster

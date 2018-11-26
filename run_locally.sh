@@ -1,14 +1,15 @@
 #!/bin/bashg
 
+# -pse stop on erros for bash
 
 faceted_filename_stub="geometry_with_tags"
 post_zip_filename="geometry_with_tags_zip.h5m"
 mcnp_filename="dagmc_demo.inp"
 mesh_filename_stub="tetmesh"
 materials_filename="materials.h5m"
-# model_description="model_description.json"
-model_description="model_description_nbi.json"
-#model_description="model_description_full.json"
+#model_description="model_description.json"
+#model_description="model_description_nbi.json"
+model_description="model_description_full.json"
 
 #tidies up the directory
 rm *.jou
@@ -57,8 +58,8 @@ trelis make_faceted_geometry_with_material_and_tally_tags.py
 # geometry_with_tags_edges.vtk for visit visulisation 
 # geometry_with_tags.stl for paraview or visit visulisation
 
-trelis -batch -nographics make_unstructured_mesh.py 
-#trelis make_unstructured_mesh.py
+#trelis -batch -nographics make_unstructured_mesh.py 
+trelis make_unstructured_mesh.py
 #outputs tetmesh.cub for conversion
 #outputs tetmesh.h5m for particle tallies
 #outputs tetmesh.vtk for visulisation
@@ -71,14 +72,14 @@ check_watertight $post_zip_filename
 
 uwuw_preproc $post_zip_filename -l $materials_filename -s -v
 
-#if [ $? -ne 0 ] ; then
+if [ $? -ne 0 ] ; then
   uwuw_preproc $post_zip_filename -l $materials_filename
-#else
-#    echo "Failed to perform uwuw_preproc"
-#    exit
-#fi
+else
+    echo "0 returned Failed to perform uwuw_preproc"
+    exit
+fi
 
-python3 make_dagmcnp_input_file.py -nps=1e4 --output_filename=$mcnp_filename 
+python3 make_dagmcnp_input_file.py -nps=1e7 --output_filename=$mcnp_filename 
 
 
 mcnp6.mpi i=dagmc_demo.inp g=geometry_with_tags_zip.h5m xsdir='xsdir_mcnp_jeff33_fendl31d'

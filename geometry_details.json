@@ -206,22 +206,10 @@
             "77"
         ], 
         "surface_reflectivity": {
-            "6400": {
-                "reflector": true
-            }, 
             "896": {
                 "reflector": true
             }, 
-            "6402": {
-                "reflector": true
-            }, 
             "235": {
-                "reflector": true
-            }, 
-            "6407": {
-                "reflector": true
-            }, 
-            "6409": {
                 "reflector": true
             }, 
             "908": {
@@ -248,12 +236,6 @@
             "1434": {
                 "reflector": true
             }, 
-            "6430": {
-                "reflector": true
-            }, 
-            "6431": {
-                "reflector": true
-            }, 
             "1057": {
                 "reflector": true
             }, 
@@ -261,6 +243,9 @@
                 "reflector": true
             }, 
             "808": {
+                "reflector": true
+            }, 
+            "2546": {
                 "reflector": true
             }, 
             "815": {
@@ -296,7 +281,19 @@
             "851": {
                 "reflector": true
             }, 
+            "2516": {
+                "reflector": true
+            }, 
+            "2518": {
+                "reflector": true
+            }, 
             "857": {
+                "reflector": true
+            }, 
+            "2523": {
+                "reflector": true
+            }, 
+            "2525": {
                 "reflector": true
             }, 
             "1118": {
@@ -323,6 +320,9 @@
             "1778": {
                 "reflector": false
             }, 
+            "2547": {
+                "reflector": true
+            }, 
             "889": {
                 "reflector": true
             }, 
@@ -339,7 +339,7 @@
     }, 
     {
         "color": "red", 
-        "material": "steel_vol_45_with_cu_alumina_H2O", 
+        "material": "steel_vol_45_cu_al_H2O", 
         "volumes": [
             "78", 
             "79", 
@@ -366,7 +366,7 @@
     }, 
     {
         "color": "orange", 
-        "material": "CuCrZR_vol_90_H2O_vol_10", 
+        "material": "CuCrZr_vol_90_H2O_vol_10", 
         "volumes": [
             "118", 
             "119"
@@ -386,7 +386,7 @@
     }, 
     {
         "color": "yellow", 
-        "material": "steel_vol_55_with_cu_alumina_H2O", 
+        "material": "steel_vol_55_cu_al_H2O", 
         "volumes": [
             "126"
         ], 
@@ -394,7 +394,7 @@
     }, 
     {
         "color": "blue", 
-        "material": "steel_vol_55_with_cu_alumina_H2O", 
+        "material": "steel_vol_55_cu_al_H2O", 
         "volumes": [
             "128"
         ], 
@@ -407,30 +407,5 @@
             "129"
         ], 
         "filename": "CAD_segmented_by_material/bellows_outer.sat"
-    }, 
-    {
-        "color": "green", 
-        "material": "SS-316L(N)-IG", 
-        "volumes": [
-            "130"
-        ], 
-        "filename": "CAD_segmented_by_material/nbi_vessel_upper_top.sat"
-    }, 
-    {
-        "color": "green", 
-        "material": "SS-316L(N)-IG", 
-        "volumes": [
-            "131"
-        ], 
-        "filename": "CAD_segmented_by_material/nbi_vessel_lower_cylinder.sat"
-    }, 
-    {
-        "color": "green", 
-        "material": "SS-316L(N)-IG", 
-        "volumes": [
-            "308", 
-            "315"
-        ], 
-        "filename": "CAD_segmented_by_material/nbi_vessel_box.sat"
     }
 ]

@@ -7,7 +7,8 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('-of', '--output_filename', type=str, default='submit_script_cumulus.sh')
 parser.add_argument('-nodes', type=str, default='4')
-parser.add_argument('-ppn', type=str, default='10')
+parser.add_argument('-ppn', type=str, default='32')
+parser.add_argument('-ncpu', type=str, default='40')
 args = parser.parse_args()
 
 
@@ -23,8 +24,6 @@ submit_commands = ['############################################################
                    '',
                    '#PBS -V',
                    '               #export all environment variables',
-                   '##PBS -l select=4:ncpus=8:mem=40gb',
-                   '               #chunks, cpus per chunk, mem per chunk',
                    '#PBS -l nodes='+args.nodes+':ppn='+args.ppn,
                    '#PBS -k oe',
                    '    # stdout and err real time in home dir rather than copied back at the end',
@@ -39,7 +38,7 @@ submit_commands = ['############################################################
                    'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/mcnp/mcnpexecs/dag-mcnp611/lib/',
                    'export DATAPATH=/home/mcnp/xs/',
                    '',
-                   'mpirun -np '+str(int(args.nodes)*int(args.ppn))+' /home/mcnp/mcnpexecs/dag-mcnp611/bin/mcnp6.mpi i='+mcnp_filename+' g='+post_zip_filename+' xsdir="xsdir_mcnp_jeff33_fendl31d"',
+                   'mpirun -np '+str(int(args.ncpu))+' /home/mcnp/mcnpexecs/dag-mcnp611/bin/mcnp6.mpi i='+mcnp_filename+' g='+post_zip_filename+' xsdir="xsdir_mcnp_jeff33_fendl31d"',
                    '',
                    '#################################################################',
                    ]

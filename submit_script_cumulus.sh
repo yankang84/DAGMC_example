@@ -3,9 +3,7 @@
 
 #PBS -V
                #export all environment variables
-##PBS -l select=4:ncpus=8:mem=40gb
-               #chunks, cpus per chunk, mem per chunk
-#PBS -l nodes=4:ppn=10
+#PBS -l nodes=4:ppn=32
 #PBS -k oe
     # stdout and err real time in home dir rather than copied back at the end
 

@@ -5,6 +5,7 @@ from pyne.mcnp import mats_from_inp
 from pprint import pprint
 from pyne import mcnp, nucname
 import os
+import json
 
 def check_materials_are_the_same(mat1,mat2):
     if mat1.__class__.__name__ == 'MultiMaterial' or mat2.__class__.__name__ == 'MultiMaterial':
@@ -93,13 +94,13 @@ mcnp_lib_nbi_2017[160].density = 5.15800
 my_material_library['steel_vol_60_water_vol_40'] = mcnp_lib_nbi_2017[160].expand_elements()
 # my_material_library['steel_vol_60_water_vol_40'].metadata='used in lower port plug SS316L(N) - 60%, water (31 bar, 200 C) - 40%'
 
-my_material_library['steel_vol_55_with_cu_alumina_H2O'] = mcnp_lib_nbi_2017[77].expand_elements()
+my_material_library['steel_vol_55_cu_al_H2O'] = mcnp_lib_nbi_2017[77].expand_elements()
 # my_material_library['steel_vol_55_with_cu_alumina_H2O'].metadata='used in the port gate , ion source case 45% SS 316 40% Cu 10% Alumina 5% Water'
 
-my_material_library['steel_vol_45_with_cu_alumina_H2O'] = mcnp_lib_nbi_2017[73].expand_elements()
-# my_material_library['steel_vol_45_with_cu_alumina_H2O'].metadata='used in accelerator'
+my_material_library['steel_vol_45_cu_al_H2O'] = mcnp_lib_nbi_2017[73].expand_elements()
+# my_material_library['steel_vol_45_cu_al_H2O'].metadata='used in accelerator'
 
-my_material_library['CuCrZR_vol_90_H2O_vol_10'] = mcnp_lib_nbi_2017[75].expand_elements()
+my_material_library['CuCrZr_vol_90_H2O_vol_10'] = mcnp_lib_nbi_2017[75].expand_elements()
 # my_material_library['CuCrZR_vol_90_H2O_vol_10'].metadata='used in dump plates'
 
 my_material_library['Zr_vol_70_V_24.6_Fe_vol_5.4'] = mcnp_lib_nbi_2017[72].expand_elements()
@@ -131,8 +132,42 @@ for m in my_material_library:
     my_material_library[m] = mat
 
 
+
+# checks material names are not too long
+for key in my_material_library.keys():
+    if len(key) > len('steel_vol_45_with_cu_alumin'):
+        raise ValueError('material name is too long ',key)
+        print(key)
+
+
+
+
+with open('filename_details.json') as f:
+    filename_details = json.load(f)
+
+model_description = filename_details['model_description']
+
+print('loading ',model_description)
+with open(model_description) as f:
+    geometry_details = json.load(f)
+
+
+for item in geometry_details:
+    print(item['material'] )
+    if item['material'] not in my_material_library.keys():
+        if item['material'] != 'Vacuum':
+            raise ValueError('material in model is not made in make_materials_from_file ',item['material'])
+    if len(item['material']) > len('steel_vol_45_with_cu_alumin'):
+        raise ValueError('material name is too long ',item['material'])
+
+
+
+
+
+
 my_material_library.write_hdf5(output_filename)
 print('Finished creating Pyne materials, materials saved as "'+output_filename+'"')
+
 
 
 #for key, value in my_material_library['homogenised_blanket'].metadata['table_ids']:

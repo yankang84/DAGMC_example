@@ -101,12 +101,12 @@
     },
     {
         "filename":"CAD_segmented_by_material/Accelerator_m76.sat",
-        "material":"steel_vol_45_with_cu_alumina_H2O",
+        "material":"steel_vol_45_cu_al_H2O",
         "color":"red"
     },
     {
         "filename":"CAD_segmented_by_material/dump_plate_m75.sat",
-        "material":"CuCrZR_vol_90_H2O_vol_10",
+        "material":"CuCrZr_vol_90_H2O_vol_10",
         "color":"orange"
     },
     {
@@ -116,32 +116,17 @@
     },    
     {
         "filename":"CAD_segmented_by_material/port_gate.sat",
-        "material":"steel_vol_55_with_cu_alumina_H2O",
+        "material":"steel_vol_55_cu_al_H2O",
         "color":"yellow"
     },
     {
         "filename":"CAD_segmented_by_material/RF_ion_source_case_m77.sat",
-        "material":"steel_vol_55_with_cu_alumina_H2O",
+        "material":"steel_vol_55_cu_al_H2O",
         "color":"blue"
     },              
     { 
         "filename":"CAD_segmented_by_material/bellows_outer.sat",
         "material":"SS-316L(N)-IG",
         "color":"red"
-    },
-    {
-        "filename":"CAD_segmented_by_material/nbi_vessel_upper_top.sat",
-        "material":"SS-316L(N)-IG",
-        "color":"green"
-    },
-    {
-        "filename":"CAD_segmented_by_material/nbi_vessel_lower_cylinder.sat",
-        "material":"SS-316L(N)-IG",
-        "color":"green"
-    },
-    {
-        "filename":"CAD_segmented_by_material/nbi_vessel_box.sat",
-        "material":"SS-316L(N)-IG",
-        "color":"green"
     }
 ]

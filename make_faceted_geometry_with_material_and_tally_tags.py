@@ -217,8 +217,8 @@ cubit.cmd('save as "'+output_filename_stub+'.cub" overwrite')
 cubit.cmd('delete volume '+wedge_volume)
 cubit.cmd('delete volume '+graveyard_vol)
 cubit.cmd('save as "'+output_filename_stub+'.trelis" overwrite')
-
-os.system('mbconvert '+output_filename_stub+'_visulisation.h5m '+output_filename_stub+'.stl')
+cubit.cmd('save as "'+output_filename_stub+'.stl" overwrite')
+#os.system('mbconvert '+output_filename_stub+'_visulisation.h5m '+output_filename_stub+'.stl')
 os.system('mbconvert -1 '+output_filename_stub+'.h5m '+output_filename_stub+'_edges.h5m')
 
 with open('geometry_details.json', 'w') as outfile:

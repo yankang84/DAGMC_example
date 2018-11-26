@@ -2,7 +2,7 @@
     "faceted_filename_stub": "geometry_with_tags",
     "mesh_filename_stub": "tetmesh",
     "materials_filename": "materials.h5m",
-    "model_description": "model_description_nbi.json",
+    "model_description": "model_description_full.json",
     "mcnp_filename": "dagmc_demo.inp",
     "post_zip_filename": "geometry_with_tags_zip.h5m"
 }
