@@ -1,4 +1,4 @@
-#!/bin/bashg
+#!/bin/bash
 
 # -pse stop on erros for bash
 

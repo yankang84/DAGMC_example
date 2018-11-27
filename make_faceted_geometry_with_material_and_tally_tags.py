@@ -7,9 +7,28 @@ import json
 
 #cubit.cmd('reset')
 
+def delete_old_files(output_filename_stub):
+    filenames_to_del = ['geometry_details.json', 
+                        output_filename_stub + '.h5m', 
+                        output_filename_stub + '.trelis', 
+                        output_filename_stub + '.stl', 
+                        output_filename_stub + '_edges.h5m'
+                        ]
+    for filename in filenames_to_del:
+        os.system('rm '+filename)
 
-
-
+def check_files_creation(output_filename_stub):
+    filenames_to_check = ['geometry_details.json', 
+                          output_filename_stub + '.h5m', 
+                          output_filename_stub + '.trelis', 
+                          output_filename_stub + '.stl', 
+                          output_filename_stub + '_edges.h5m'
+                          ]
+    for filename in filenames_to_check:
+        file_exists = os.path.isfile(filename)
+        if not file_exists:
+            raise ValueError('Exspected output file not found',filename)
+        
 
 def find_number_of_volumes_in_each_step_file(input_locations):
     body_ids=''
@@ -108,6 +127,7 @@ def byteify(input):
 
 
 def find_reflecting_surfaces_of_reflecting_wedge(geometry_details):
+    wedge_volume = None
     for entry in geometry_details:
         if 'surface_reflectivity' in entry.keys():
             surface_info_dict = entry['surface_reflectivity']
@@ -154,38 +174,39 @@ def tag_geometry_with_mats_and_tallies(geometry_details):
           cubit.cmd('group "tally:'+tally+'" add volume ' +' '.join(entry['volumes']))
 
 
+def imprint_and_merge_geometry(tolerance='1e-4'):
+    cubit.cmd('imprint body all')
+    cubit.cmd('merge tolerance '+tolerance) #optional as there is a default
+    cubit.cmd('merge vol all group_results')
+    cubit.cmd('graphics tol angle 3')
 
 
-# aprepro_vars = cubit.get_aprepro_vars()
-
-# print("Found the following aprepro variables:")
-# print(aprepro_vars)
-# for var_name in aprepro_vars:
-#   val = cubit.get_aprepro_value_as_string(var_name)
-#   print("{0} = {1}".format(var_name, val))
-
-
-# if "model_description" in aprepro_vars:
-#     model_description = str(cubit.get_aprepro_value_as_string("model_description"))
-# elif "md" in aprepro_vars:
-#     model_description = str(cubit.get_aprepro_value_as_string("ofs"))
-# else:
-#     model_description = "model_description.json"
-
-# print('model_description',model_description)
+def save_output_files(output_filename_stub, graveyard_vol, wedge_volume):
+    cubit.cmd('set attribute on')
+    cubit.cmd('export dagmc "'+output_filename_stub+'.h5m" faceting_tolerance 1.0e-2') # use 1.0e-4 for accurate simulations
+    cubit.cmd('save as "'+output_filename_stub+'.cub" overwrite')
+    #cubit.cmd('delete Group "mat:Graveyard"') #would be tidier if these trelis allowed group commands like these without the sdk
+    #cubit.cmd('delete Group "mat:Vacuum"')
+    if wedge_volume != None:
+        cubit.cmd('delete volume '+wedge_volume)
+    cubit.cmd('delete volume '+graveyard_vol)
+    cubit.cmd('save as "'+output_filename_stub+'.trelis" overwrite')
+    cubit.cmd('save as "'+output_filename_stub+'.stl" overwrite')
+    os.system('mbconvert -1 '+output_filename_stub+'.h5m '+output_filename_stub+'_edges.h5m')
+    with open('geometry_details.json', 'w') as outfile:
+        json.dump(geometry_details, outfile, indent =4)
 
 with open('filename_details.json') as f:
     filename_details = byteify(json.load(f))
 
 output_filename_stub = filename_details['faceted_filename_stub']
+
+delete_old_files(output_filename_stub)
+
 model_description = filename_details['model_description']
 
-print('loading ',model_description)
 with open(model_description) as f:
     geometry_details = byteify(json.load(f))
-
-
-print('geometry_details = ',geometry_details)
 
 geometry_details = find_number_of_volumes_in_each_step_file(geometry_details)
 
@@ -197,31 +218,11 @@ color_geometry(geometry_details)
 
 tag_geometry_with_mats_and_tallies(geometry_details)
 
-cubit.cmd('imprint body all')
-#cubit.cmd('merge tolerance 1.e-4') #optional as there is a default
-cubit.cmd('merge vol all group_results')
-cubit.cmd('graphics tol angle 3')
-
+imprint_and_merge_geometry()
 
 updated_wedge_surface_info_dict,wedge_volume = find_reflecting_surfaces_of_reflecting_wedge(geometry_details)
 
-cubit.cmd('set attribute on')
+save_output_files(output_filename_stub, graveyard_vol, wedge_volume)
 
-cubit.cmd('export dagmc "'+output_filename_stub+'.h5m" faceting_tolerance 1.0e-2') # use 1.0e-4 for accurate simulations
-
-
-cubit.cmd('save as "'+output_filename_stub+'.cub" overwrite')
-
-#cubit.cmd('delete Group "mat:Graveyard"')
-#cubit.cmd('delete Group "mat:Vacuum"')
-cubit.cmd('delete volume '+wedge_volume)
-cubit.cmd('delete volume '+graveyard_vol)
-cubit.cmd('save as "'+output_filename_stub+'.trelis" overwrite')
-cubit.cmd('save as "'+output_filename_stub+'.stl" overwrite')
-#os.system('mbconvert '+output_filename_stub+'_visulisation.h5m '+output_filename_stub+'.stl')
-os.system('mbconvert -1 '+output_filename_stub+'.h5m '+output_filename_stub+'_edges.h5m')
-
-with open('geometry_details.json', 'w') as outfile:
-    json.dump(geometry_details, outfile, indent =4)
-
+check_files_creation(output_filename_stub)
 
