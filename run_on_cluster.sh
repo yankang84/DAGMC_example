@@ -44,11 +44,17 @@ export PATH=$PATH:/home/jshim/visit/visit2_13_2.linux-x86_64/bin/
 
 /home/jshim/dagmc_bld/MOAB/bin/mbconvert tally_tbr.h5m tally_tbr.vtk
 /home/jshim/dagmc_bld/MOAB/bin/mbconvert tally_neutron_spectra.h5m tally_neutron_spectra.vtk
+/home/jshim/dagmc_bld/MOAB/bin/mbconvert tally_neutron_heat.h5m tally_neutron_heat.vtk
+/home/jshim/dagmc_bld/MOAB/bin/mbconvert tally_photon_heat.h5m tally_photon_heat.vtk
 
 exit
 
 scp jshim@login1.cumulus.hpc.l:/home/jshim/dagmc_example/tally_neutron_spectra.h5m tally_neutron_spectra.h5m
 scp jshim@login1.cumulus.hpc.l:/home/jshim/dagmc_example/tally_tbr.h5m tally_tbr.h5m
+scp jshim@login1.cumulus.hpc.l:/home/jshim/dagmc_example/tally_neutron_heat.h5m tally_neutron_heat.h5m
+scp jshim@login1.cumulus.hpc.l:/home/jshim/dagmc_example/tally_photon_heat.h5m tally_photon_heat.h5m
 
 scp jshim@login1.cumulus.hpc.l:/home/jshim/dagmc_example/tally_neutron_spectra.h5m tally_neutron_spectra.vtk
 scp jshim@login1.cumulus.hpc.l:/home/jshim/dagmc_example/tally_tbr.h5m tally_tbr.vtk
+scp jshim@login1.cumulus.hpc.l:/home/jshim/dagmc_example/tally_neutron_heat.h5m tally_neutron_heat.vtk
+scp jshim@login1.cumulus.hpc.l:/home/jshim/dagmc_example/tally_photon_heat.h5m tally_photon_heat.vtk

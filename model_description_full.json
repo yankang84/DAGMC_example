@@ -2,7 +2,7 @@
     {
         "filename":"CAD_segmented_by_material/blankets.sat",
         "material":"homogenised_blanket",
-        "color":"red"
+        "color":"red",
     },
     {
         "filename":"CAD_segmented_by_material/central_sol.sat",

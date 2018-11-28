@@ -916,7 +916,7 @@ mesh_tritium_production =['c tritium production on mesh',
 
 #too slow for testing
 #all_parts = [header,physics_card,mesh_spectra,mesh_flux,mesh_neutron_heating,mesh_photon_heating,mesh_tritium_production]
-all_parts = [header,physics_card,mesh_spectra,mesh_tritium_production]
+all_parts = [header,physics_card,mesh_spectra,mesh_tritium_production,mesh_neutron_heating,mesh_photon_heating]
 
 print('creating '+str(args.output_filename))
 f = open(args.output_filename, "w")
