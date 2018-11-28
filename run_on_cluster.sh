@@ -33,6 +33,7 @@ export PATH=$PATH:/home/jshim/visit/visit2_13_2.linux-x86_64/bin/
 
 # output files include
 
+
 #fcad
 #lcad
 #meshtal
@@ -41,8 +42,13 @@ export PATH=$PATH:/home/jshim/visit/visit2_13_2.linux-x86_64/bin/
 #tally_neutron_spectra.h5m
 #tally_tbr.h5m
 
+/home/jshim/dagmc_bld/MOAB/bin/mbconvert tally_tbr.h5m tally_tbr.vtk
+/home/jshim/dagmc_bld/MOAB/bin/mbconvert tally_neutron_spectra.h5m tally_neutron_spectra.vtk
+
 exit
+
 scp jshim@login1.cumulus.hpc.l:/home/jshim/dagmc_example/tally_neutron_spectra.h5m tally_neutron_spectra.h5m
 scp jshim@login1.cumulus.hpc.l:/home/jshim/dagmc_example/tally_tbr.h5m tally_tbr.h5m
 
-visit tally_tbr.h5m
+scp jshim@login1.cumulus.hpc.l:/home/jshim/dagmc_example/tally_neutron_spectra.h5m tally_neutron_spectra.vtk
+scp jshim@login1.cumulus.hpc.l:/home/jshim/dagmc_example/tally_tbr.h5m tally_tbr.vtk
