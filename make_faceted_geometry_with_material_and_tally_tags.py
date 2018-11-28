@@ -191,7 +191,7 @@ def save_output_files(output_filename_stub, graveyard_vol, wedge_volume):
         cubit.cmd('delete volume '+wedge_volume)
     cubit.cmd('delete volume '+graveyard_vol)
     cubit.cmd('save as "'+output_filename_stub+'.trelis" overwrite')
-    cubit.cmd('save as "'+output_filename_stub+'.stl" overwrite')
+    cubit.cmd('export stl"'+output_filename_stub+'.stl" overwrite')
     os.system('mbconvert -1 '+output_filename_stub+'.h5m '+output_filename_stub+'_edges.h5m')
     with open('geometry_details.json', 'w') as outfile:
         json.dump(geometry_details, outfile, indent =4)

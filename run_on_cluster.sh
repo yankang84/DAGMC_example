@@ -40,3 +40,9 @@ export PATH=$PATH:/home/jshim/visit/visit2_13_2.linux-x86_64/bin/
 #runtpe
 #tally_neutron_spectra.h5m
 #tally_tbr.h5m
+
+exit
+scp jshim@login1.cumulus.hpc.l:/home/jshim/dagmc_example/tally_neutron_spectra.h5m tally_neutron_spectra.h5m
+scp jshim@login1.cumulus.hpc.l:/home/jshim/dagmc_example/tally_tbr.h5m tally_tbr.h5m
+
+visit tally_tbr.h5m
