@@ -96,3 +96,11 @@ print('unstrutured mesh saved as ',output_filename_stub+'.cub')
 
 os.system('mbconvert '+output_filename_stub+'.cub '+output_filename_stub+'.h5m')
 os.system('mbconvert '+output_filename_stub+'.h5m '+output_filename_stub+'.vtk')
+
+#for each element in the mesh
+# find all material names
+# allocate material numbers based on these names ('alpha')
+# write mcr2s material card using
+
+# find material name
+# alocate materials using their name

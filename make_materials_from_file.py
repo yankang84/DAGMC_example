@@ -6,6 +6,7 @@ from pprint import pprint
 from pyne import mcnp, nucname
 import os
 import json
+import argparse
 
 def check_materials_are_the_same(mat1,mat2):
     if mat1.__class__.__name__ == 'MultiMaterial' or mat2.__class__.__name__ == 'MultiMaterial':
@@ -35,8 +36,34 @@ def split_multimaterial_into_materials(multimat):
             materials.append(item[0])
         return materials
 
+def write_mcr2s_material_card(materials,filename='materials.r2s'):
 
-import argparse
+    f = open(filename, "w")
+
+    for n, m in enumerate(my_material_library):
+        print(n, m)
+        print(my_material_library[m].mcnp())
+        print(my_material_library[m].density)
+        material_name = m
+        material_number = str(n+1)
+        material_density = str(my_material_library[m].density)
+        nucid_atomfracs = my_material_library[m]._comp
+        zaids = []
+        atomfractions = []
+        for nucid, atomfrac in nucid_atomfracs.items():
+            print(nucid, atomfrac)
+            zaids.append(str(nucid))
+            atomfractions.append(str(atomfrac))
+
+        f.write('m'+material_number+' rho=-'+material_density+" ref='"+material_name+"'\n")
+        for zaid,atomfraction in zip(zaids,atomfractions):
+            f.write(zaid + '    ' + atomfraction + '\n')
+        f.write('/m'+material_number+'\n')  
+    
+    f.close()
+
+
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-of', '--output_filename', type=str, default='materials.h5')
@@ -119,17 +146,24 @@ for entry in my_material_library.keys():
     #print(my_material_library[entry].density)
     if my_material_library[entry].density == -1:
         print(my_material_library[entry])
-        raise ValueError('density of material is -1, which happens when the material density is not set')
+        raise ValueError('density of material is -1, which happens when the material density is not set. Set the material density!')
 
 
 new_lib = "50m"
-new_lib = ""
+new_lib = "" #assigns no nuclear data lib for zaids . other options are 31c, 30, etc
 for m in my_material_library:
     mat = my_material_library[m]
     table_ids = {str(nucname.zzzaaa(key)): new_lib for key, value in mat.comp.items()}
     mat.metadata['table_ids'] = table_ids
     mat.metadata['mat_number'] = int(mat.metadata['mat_number'])
     my_material_library[m] = mat
+
+
+
+
+
+
+
 
 
 
@@ -152,20 +186,33 @@ with open(model_description) as f:
     geometry_details = json.load(f)
 
 
+
+'check all materials in the json file are in the material library'
 for item in geometry_details:
+
     print(item['material'] )
     if item['material'] not in my_material_library.keys():
         if item['material'] != 'Vacuum':
             raise ValueError('material in model is not made in make_materials_from_file ',item['material'])
     if len(item['material']) > len('steel_vol_45_with_cu_alumin'):
         raise ValueError('material name is too long ',item['material'])
+    
 
 
 
+#makes a material library just for the materials in the json file
+my_simulation_material_library = MaterialLibrary()
+for item in geometry_details:
+    if item['material'] != 'Vacuum':
+        print('adding',item['material'])
+        my_simulation_material_library[item['material']] = my_material_library[item['material']]
+
+
+write_mcr2s_material_card(my_simulation_material_library)
 
 
 
-my_material_library.write_hdf5(output_filename)
+my_simulation_material_library.write_hdf5(output_filename)
 print('Finished creating Pyne materials, materials saved as "'+output_filename+'"')
 
 
